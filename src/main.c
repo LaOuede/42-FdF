@@ -6,13 +6,14 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:05:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/30 15:18:12 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:40:29 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../libft/includes/libft.h"
 
-static mlx_image_t *g_image;
+/* static mlx_image_t	*g_image;
 
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -59,7 +60,7 @@ void	ft_hook(void *param)
 
 int32_t	main(int32_t argc, const char **argv)
 {
-	mlx_t	*mlx;
+	mlx_t				*mlx;
 
 	(void) argc;
 	(void) argv;
@@ -87,4 +88,24 @@ int32_t	main(int32_t argc, const char **argv)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
+} */
+
+#include <fcntl.h>  //O_RDONLY
+int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	fd = open("./test_maps/pyramide.fdf", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		printf("%s", line);
+		if (line)
+			free(line);
+	}
+	close (fd);
+	return (0);
 }
