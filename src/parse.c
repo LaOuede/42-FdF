@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/03/31 13:10:51 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/03/31 13:18:09 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 	
 } */
 
+/*
+Checks :
+	- if the <map.fdf> is valid / exist,
+	- if the extension is .fdf,
+	- if the file can be opened.
+*/
 void	ft_parse_file(char *file)
 {
 	int		fd;
