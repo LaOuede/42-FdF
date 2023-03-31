@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/31 11:24:44 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/03/31 15:07:18 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_map_infos
 
 /* --------------------FUNCTIONS------------------- */
 static mlx_image_t	*g_image;
-void				ft_error_args(char *err_msg);
+void				ft_error_parse(char *err_msg);
 void				ft_parse_file(char *file);
 void				ft_parse_map(t_map_infos map, char *file);
 
