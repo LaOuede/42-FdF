@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 08:48:10 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/31 10:03:51 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/03/31 09:48:55 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,27 @@
 Library :
 	#include <string.h>
 Description :
-	The strdup() function allocates sufficient memory for a copy of the string
-	s1, does the copy, and returns a pointer to it. The pointer may
-	subsequently be used as an argument to the function free(3).
-	If insufficient memory is available, NULL is returned.
+	The strcpy() function copies the string src to dst (including the
+	terminating ‘\0’ character.)
+	The source and destination strings should not overlap,
+	as the behavior is undefined.
 Declaration :
-	char *strdup(const char *s1)
+	char *strcpy(char *dst, const char *src)
 Parameters :
 	s1 - The string to duplicate.
 Return Value :
-	The strdup() function returns the pointer to the copy of s1.
+	The strcpy() functions return dst.
 */
-char	*ft_strdup(const char *s1)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	char	*dest;
+	int	index;
 
-	if (!s1)
-		return (0);
-	dest = ft_calloc(sizeof(char), (ft_strlen(s1) + 1));
-	if (!dest)
-		return (0);
-	return (ft_strcpy(dest, s1));
+	index = 0;
+	while (src[index])
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	dest[index] = '\0';
+	return (dest);
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:05:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/30 16:40:29 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:41:27 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../libft/includes/libft.h"
 
-/* static mlx_image_t	*g_image;
+static mlx_image_t	*g_image;
 
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -88,9 +88,9 @@ int32_t	main(int32_t argc, const char **argv)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
-} */
+}
 
-#include <fcntl.h>  //O_RDONLY
+/* #include <fcntl.h>  //O_RDONLY
 int	main(void)
 {
 	int		fd;
@@ -108,4 +108,4 @@ int	main(void)
 	}
 	close (fd);
 	return (0);
-}
+} */

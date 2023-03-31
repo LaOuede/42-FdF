@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
+#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/03/30 16:22:34 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/03/31 09:59:33 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRCS_LIST	=	ft_atoi.c \
 				ft_split.c \
 				ft_str_isdigit.c \
 				ft_strchr.c \
+				ft_strcmp.c \
+				ft_strcpy.c \
 				ft_strdup.c \
 				ft_striteri.c \
 				ft_strjoin.c \

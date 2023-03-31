@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 08:48:10 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/31 10:03:51 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/03/31 09:40:34 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,31 @@
 Library :
 	#include <string.h>
 Description :
-	The strdup() function allocates sufficient memory for a copy of the string
-	s1, does the copy, and returns a pointer to it. The pointer may
-	subsequently be used as an argument to the function free(3).
-	If insufficient memory is available, NULL is returned.
+	The strcmp() function lexicographically compare the null-terminated strings
+	s1 and s2.
 Declaration :
-	char *strdup(const char *s1)
+	int	strcmp(const char *s1, const char *s2)
 Parameters :
-	s1 - The string to duplicate.
+	s1 = the first string to compare;
+	s2 = the second string to compare.
 Return Value :
-	The strdup() function returns the pointer to the copy of s1.
+	The strcmp() function returns an integer greater than, equal
+	to, or less than 0, according as the string s1 is greater than, equal to,
+	or less than the string s2. The comparison is done using unsigned characters,
+	so that `\200' is greater than `\0'.
 */
-char	*ft_strdup(const char *s1)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*dest;
+	size_t	i;
 
-	if (!s1)
+	if (!s1 || !s2)
 		return (0);
-	dest = ft_calloc(sizeof(char), (ft_strlen(s1) + 1));
-	if (!dest)
-		return (0);
-	return (ft_strcpy(dest, s1));
+	i = 0;
+	while ((s1[i] != '\0' && s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+		i++;
+	}
+	return (0);
 }

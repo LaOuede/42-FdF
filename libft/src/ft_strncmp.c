@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 08:48:10 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/02/09 21:31:19 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/03/31 09:14:13 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ Description :
 	strncmp() is designed for comparing strings rather than binary data,
 	characters that appear after a `\0' character are not compared.
 Declaration :
-	
-Parameters :
 	int	strncmp(const char *s1, const char *s2, size_t n)
+Parameters :
+	s1 = the first string to compare;
+	s2 = the second string to compare;
+	n = the number of characters to compare.
 Return Value :
 	The strcmp() and strncmp() functions return an integer greater than, equal
 	to, or less than 0, according as the string s1 is greater than, equal to,

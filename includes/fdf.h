@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/30 14:07:42 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:24:44 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define FDF_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
-# include <stdio.h> 
+# include "../libft/includes/libft.h"
+# include "../ft_printf/includes/ft_printf.h"
+# include <fcntl.h> // O_RDONLY
+# include <stdio.h> // open
 # include <stdlib.h>
 # include <stdbool.h>
 
@@ -37,10 +40,21 @@
 # define WIDTH 1100
 # define HEIGHT 800
 
+/* -------------------STRUCTURES------------------- */
+typedef struct s_map_infos
+{
+	int		width;
+	int		height;
+	int		z_min;
+	int		z_max;
+	bool	color;
+}		t_map_infos;
+
 /* --------------------FUNCTIONS------------------- */
 static mlx_image_t	*g_image;
-
-/* -------------------STRUCTURES------------------- */
+void				ft_error_args(char *err_msg);
+void				ft_parse_file(char *file);
+void				ft_parse_map(t_map_infos map, char *file);
 
 /* ----------------UTILS FUNCTIONS----------------- */
 
