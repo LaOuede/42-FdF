@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/03/31 15:07:31 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/03/31 22:44:33 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	(void) map;
 	if (argc != 2)
 		ft_error_parse("Usage : ./fdf <map.fdf>\n"
-			KYEL"	-> 1 argument is needed\n"KNRM);
+			KYEL"	-> An argument is needed <-\n"KNRM);
 	ft_parse_file(argv[1]);
 	//ft_parse_map(&map, argv[1]);
 	return (0);
