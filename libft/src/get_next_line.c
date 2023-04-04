@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:23:09 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/30 16:15:04 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/04 08:02:27 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*read_n_save(int fd, char *save)
 
 	while (ft_strchr_new_line(save) == 0)
 	{
-		buf = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+		buf = ft_calloc_gnl(sizeof(char), BUFFER_SIZE + 1);
 		if (!buf)
 			return (NULL);
 		rbytes = read(fd, buf, BUFFER_SIZE);
@@ -59,7 +59,7 @@ static char	*get_before(char *save, char *line)
 		len++;
 	if (save[len] == '\n')
 		len++;
-	line = ft_calloc(sizeof * line, len + 1);
+	line = ft_calloc_gnl(sizeof * line, len + 1);
 	if (!line)
 		return (NULL);
 	while (len--)
@@ -80,7 +80,7 @@ static char	*keep_after(char *save)
 
 	i = 0;
 	j = 0;
-	temp = ft_strdup(save);
+	temp = ft_strdup_gnl(save);
 	while (temp[i] && temp[i] != '\n')
 		i++;
 	if (temp[i] == '\0')

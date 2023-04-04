@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   get_points.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/04 13:25:20 by gle-roux         ###   ########.fr       */
+/*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
+/*   Updated: 2023/04/04 13:27:34 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_init_ms(t_fdf *ms)
+void	ft_get_points(char *file)
 {
-	ms->infos.height = 0;
-	ms->infos.width = 0;
-	ms->infos.z_max = 0;
-	ms->infos.z_min = 0;
-	ms->infos.color = F;
-}
+	int		fd;
+	char	*line;
+	char	*map;
 
-int	main(int argc, char **argv)
-{
-	t_fdf	ms;
-
-	if (argc != 2)
-		ft_error_parse("Usage : ./fdf <map.fdf>\n"
-			KYEL"	-> An argument is needed <-\n"KNRM);
-	ft_init_ms(&ms);
-	ft_parse_file(argv[1]);
-	ft_parse_map(ms, argv[1]);
-	ft_get_points(argv[1]);
-	return (0);
+	map = ft_strdup("");
+	fd = open(file, O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		map = ft_strjoin(map, line);
+		if (line)
+			free(line);
+	}
+	close (fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/31 15:07:18 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/04 13:25:19 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h> // open
 # include <stdlib.h>
 # include <stdbool.h>
+# include <math.h>
 
 /* --------------------COLORS--------------------- */
 # define KNRM "\x1B[m"
@@ -41,20 +42,34 @@
 # define HEIGHT 800
 
 /* -------------------STRUCTURES------------------- */
-typedef struct s_map_infos
+typedef enum flag
 {
-	int		width;
-	int		height;
-	int		z_min;
-	int		z_max;
-	bool	color;
-}		t_map_infos;
+	F,
+	T
+}	t_flag;
+
+typedef struct s_map
+{
+	int			width;
+	int			height;
+	int			z_min;
+	int			z_max;
+	enum flag	color;
+}	t_map;
+
+typedef struct s_fdf
+{
+	t_map	infos;
+}	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
-static mlx_image_t	*g_image;
-void				ft_error_parse(char *err_msg);
-void				ft_parse_file(char *file);
-void				ft_parse_map(t_map_infos map, char *file);
+void	ft_error_parse(char *err_msg);
+void	ft_get_points(char *file);
+void	ft_map_is_colored(t_fdf *ms, char *str);
+void	ft_map_width(t_fdf *ms, char *line);
+void	ft_parse_file(char *file);
+void	ft_parse_map(t_fdf ms, char *file);
+int		ft_valid_char(char c);
 
 /* ----------------UTILS FUNCTIONS----------------- */
 

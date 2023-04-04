@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
+#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/03/31 09:50:49 by gwenolalero      ###   ########.fr        #
+#    Updated: 2023/04/04 13:20:46 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,9 @@ NAME		=	fdf
 SRCS_DIR	=	./src/
 SRCS_LIST	=	clean_up.c \
 				fdf.c \
-				parse.c
+				parse.c \
+				utils.c \
+				get_points.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/

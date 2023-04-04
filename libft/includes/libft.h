@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/31 10:00:56 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/04 10:14:05 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,12 @@ t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 
 /* Other functions */
+void	*ft_calloc_gnl(size_t count, size_t size);
 char	*ft_free_tab(char **tab);
 int		ft_str_isdigit(char *str);
 char	*get_next_line(int fd);
 int		ft_strchr_new_line(char *save);
+char	*ft_strdup_gnl(char *save);
 char	*ft_strnjoin(char *temp, char *buf);
 void	*ft_free(char *str1, char *str2);
 

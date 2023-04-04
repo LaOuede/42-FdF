@@ -6,11 +6,26 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:23:28 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/03/30 16:38:46 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/04 08:02:00 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+
+/*Memory allocation*/
+void	*ft_calloc_gnl(size_t count, size_t size)
+{
+	size_t	i;
+	char	*dest;
+
+	dest = (void *)malloc(size * count);
+	if (!dest)
+		return (0);
+	i = 0;
+	while (i < (count * size))
+		dest[i++] = 0;
+	return (dest);
+}
 
 /*
   Check a string to find the new line character ('\n')
@@ -60,6 +75,33 @@ char	*ft_strnjoin(char *temp, char *buf)
 	while (buf && len_buf--)
 		save[i++] = buf[j++];
 	return (save);
+}
+
+/*
+  Duplicate a string
+  (memory allocation + copy)
+*/
+char	*ft_strdup_gnl(char *save)
+{
+	int		i;
+	int		len;
+	char	*temp;
+
+	if (!save)
+		return (0);
+	len = 0;
+	while (save[len])
+		len++;
+	temp = ft_calloc(sizeof * temp, len + 1);
+	if (!temp)
+		return (0);
+	i = 0;
+	while (save[i])
+	{
+		temp[i] = save[i];
+		i++;
+	}
+	return (temp);
 }
 
 /*Free a string if it exists*/
