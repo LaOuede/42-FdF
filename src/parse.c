@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/04 13:25:19 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:42:17 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Checks if the <map.fdf> is empty.
 Gather map infos.
 */
-void	ft_parse_map(t_fdf ms, char *file)
+void	ft_parse_map(t_fdf *ms, char *file)
 {
 	int		fd;
 	char	*line;
@@ -27,16 +27,14 @@ void	ft_parse_map(t_fdf ms, char *file)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		ft_printf("%s", line);
-		ft_map_width(&ms, line);
-		ft_map_is_colored(&ms, line);
-		if (line)
-			free(line);
-		ms.infos.height++;
+		ft_map_width(ms, line);
+		ft_map_is_colored(ms, line);
+		free(line);
+		ms->infos.height++;
 	}
-	ft_printf("width = %d\n", ms.infos.width);
-	ft_printf("height = %d\n", ms.infos.height);
-	ft_printf("color = %d\n", ms.infos.color);
+	ft_printf("width = %d\n", ms->infos.width);
+	ft_printf("height = %d\n", ms->infos.height);
+	ft_printf("color = %d\n", ms->infos.color);
 	close (fd);
 }
 
