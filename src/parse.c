@@ -6,21 +6,24 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/04 15:42:17 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:24:39 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /*
-Checks if the <map.fdf> is empty.
+Checks if the <map.fdf> is empty and if .fdf is a file and not a directory.
 Gather map infos.
 */
 void	ft_parse_map(t_fdf *ms, char *file)
 {
 	int		fd;
 	char	*line;
-
+	
+/* 	fd = open(file, O_DIRECTORY);
+	if (fd)
+		exit(1); */
 	fd = open(file, O_RDONLY);
 	while (1)
 	{

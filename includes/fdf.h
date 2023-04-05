@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/04 15:42:05 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:05:40 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ typedef enum flag
 	T
 }	t_flag;
 
+typedef struct s_map_point
+{
+	double	x;
+	double	y;
+	double	z;
+	double	color;
+}	t_map_point;
+
 typedef struct s_map
 {
 	int			width;
@@ -59,7 +67,8 @@ typedef struct s_map
 
 typedef struct s_fdf
 {
-	t_map	infos;
+	t_map		infos;
+	t_map_point	point;
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
