@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/05 10:51:32 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/05 14:29:49 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	= 	-g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	= 	-g -Wall -Wextra -Werror
+#-fsanitize=address
 
 # Remove
 RM		=	rm -rf

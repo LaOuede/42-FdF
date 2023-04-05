@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/05 09:05:40 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:23:15 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ typedef struct s_fdf
 {
 	t_map		infos;
 	t_map_point	point;
+	int			**matrix;
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
 void	ft_error_parse(char *err_msg);
 void	ft_extract_points(t_fdf *ms, char *file);
-char	*ft_get_map(char *file);
-void	ft_get_matrix(t_fdf *ms, char *str);
+void	ft_get_map(t_fdf *ms, char *file);
+void	ft_get_matrix(t_fdf *ms, char *line);
 void	ft_map_is_colored(t_fdf *ms, char *str);
 void	ft_map_width(t_fdf *ms, char *line);
 void	ft_parse_file(char *file);
