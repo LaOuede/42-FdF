@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/05 09:28:05 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:37:12 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_fdf	*ft_init_ms()
+t_fdf	*ft_init_ms(void)
 {
 	t_fdf	*ms;
 
@@ -23,6 +23,12 @@ t_fdf	*ft_init_ms()
 	ms->infos.width = 0;
 	ms->infos.z_max = 0;
 	ms->infos.z_min = 0;
+	ms->infos.color = F;
+	ms->infos.matrix = 0;
+	ms->point.x = 0;
+	ms->point.y = 0;
+	ms->point.z = 0;
+	ms->point.color = 0;
 	return (ms);
 }
 
@@ -36,7 +42,7 @@ int	main(int argc, char **argv)
 	ms = ft_init_ms();
 	ft_parse_file(argv[1]);
 	ft_parse_map(ms, argv[1]);
-	ft_extract_points(ms, argv[1]);
+	ft_get_map(ms, argv[1]);
 	free(ms);
 	return (0);
 }
