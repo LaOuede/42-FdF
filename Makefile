@@ -6,7 +6,7 @@
 #    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/05 15:14:25 by gwenolalero      ###   ########.fr        #
+#    Updated: 2023/04/05 19:08:57 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,8 @@ SRCS_DIR	=	./src/
 SRCS_LIST	=	clean_up.c \
 				fdf.c \
 				parse.c \
-				utils.c \
-				get_points.c
+				parse_utils.c \
+				read_map.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/
