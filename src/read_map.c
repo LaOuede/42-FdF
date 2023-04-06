@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/06 11:29:13 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:39:58 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_extract_points(t_fdf *ms, char *line)
 }
 
 /*
-Checks if the <map.fdf> is empty and if .fdf is a file and not a directory.
+Checks if the <map.fdf> is empty.
 Gather map infos.
 */
 void	ft_parse_map(t_fdf *ms, char *file)
@@ -35,16 +35,17 @@ void	ft_parse_map(t_fdf *ms, char *file)
 	int		fd;
 	char	*line;
 
-/* 	fd = open(file, O_DIRECTORY);
-	if (!fd)
-		exit(EXIT_FAILURE);
-	close(fd); */
 	fd = open(file, O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
+/* 		{
+			close(fd);
+			ft_error("Usage : ./fdf <map.fdf>\n"
+				KYEL"	-> File is empty / Map doesn't exist <-\n"KNRM);
+		} */
 		ft_map_width(ms, line);
 		ft_map_is_colored(ms, line);
 		free(line);

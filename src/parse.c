@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/06 11:24:45 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:26:07 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 Checks :
 	- if the <map.fdf> is valid / exist,
 	- if the extension is .fdf,
+	- if .fdf is a file and not a directory,
 	- if the file can be opened.
 */
 void	ft_parse_file(char *file)
@@ -31,8 +32,13 @@ void	ft_parse_file(char *file)
 	if (ft_strcmp(check_file, ".fdf") != 0)
 		ft_error("Usage : ./fdf <map.fdf>\n"
 			KYEL"	-> File has an invalid extension <-\n"KNRM);
+/* 	fd = open(file, O_DIRECTORY);
+	if (fd)
+		exit(EXIT_FAILURE);
+	close(fd); */
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_error("Usage : ./fdf <map.fdf>\n"
 			KYEL"	-> File cannot be opened / Does not exist <-\n"KNRM);
+	close(fd);
 }

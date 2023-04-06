@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/06 11:56:40 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:27:51 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_init_mlx(t_fdf *ms)
 {
-	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF ~gle-roux~", false);
+	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(ms->mlx, ms->image, 77, 77);
 	mlx_loop(ms->mlx);
@@ -30,7 +30,14 @@ void	ft_init_matrix(t_fdf *ms)
 		exit(EXIT_FAILURE);
 	i = -1;
 	while (++i < ms->infos.height)
+	{
 		ms->infos.matrix[i] = ft_calloc(ms->infos.width, sizeof (int));
+		if (!ms->infos.matrix[i])
+		{
+			ft_free_tab_int(ms->infos.matrix, ms->infos.height);
+			exit(EXIT_FAILURE);
+		}
+	}
 }
 
 t_map	*ft_init_infos(void)
