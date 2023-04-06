@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/06 08:38:07 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/06 10:59:07 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ export HELP
 # Compiler and flags
 CC		=	gcc
 CFLAGS	= 	-g -Wall -Wextra -Werror 
-#-fsanitize=address
+#CFLAGS	= 	-fsanitize=address
 
 # Remove
 RM		=	rm -rf
@@ -66,9 +66,11 @@ NAME		=	fdf
 SRCS_DIR	=	./src/
 SRCS_LIST	=	clean_up.c \
 				fdf.c \
+				init_struct.c \
 				parse.c \
 				parse_utils.c \
-				read_map.c
+				read_map.c \
+				utils.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 OBJS_DIR	=	./obj/

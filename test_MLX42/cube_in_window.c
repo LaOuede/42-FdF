@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_in_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:04:12 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/03/27 11:58:01 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/06 11:53:57 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

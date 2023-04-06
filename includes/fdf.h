@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/06 08:35:21 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:54:05 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,25 @@ typedef struct s_fdf
 {
 	t_map		infos;
 	t_map_point	point;
+	mlx_t		*mlx;
+	mlx_image_t	*image;
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
-void	ft_error_parse(char *err_msg);
-void	ft_get_map(t_fdf *ms, char *file);
+void	ft_error(char *err_msg);
 void	ft_extract_points(t_fdf *ms, char *line);
 t_map	*ft_init_infos(void);
+void	ft_init_matrix(t_fdf *ms);
+void	ft_init_mlx(t_fdf *ms);
+t_fdf	*ft_init_ms(void);
 void	ft_map_is_colored(t_fdf *ms, char *str);
 void	ft_map_width(t_fdf *ms, char *line);
 void	ft_parse_file(char *file);
 void	ft_parse_map(t_fdf *ms, char *file);
+void	ft_read_map(t_fdf *ms, char *file);
 int		ft_valid_char(char c);
 
 /* ----------------UTILS FUNCTIONS----------------- */
+void	ft_print_matrix(t_fdf *ms);
 
 #endif

@@ -6,41 +6,11 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/06 08:35:58 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:24:45 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-/*
-Checks if the <map.fdf> is empty and if .fdf is a file and not a directory.
-Gather map infos.
-*/
-void	ft_parse_map(t_fdf *ms, char *file)
-{
-	int		fd;
-	char	*line;
-
-/* 	fd = open(file, O_DIRECTORY);
-	if (!fd)
-		exit(EXIT_FAILURE); */
-	
-	fd = open(file, O_RDONLY);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		ft_map_width(ms, line);
-		ft_map_is_colored(ms, line);
-		free(line);
-		ms->infos.height++;
-	}
-	ft_printf("width = %d\n", ms->infos.width);
-	ft_printf("height = %d\n", ms->infos.height);
-	ft_printf("color = %d\n", ms->infos.color);
-	close (fd);
-}
 
 /*
 Checks :
@@ -56,13 +26,13 @@ void	ft_parse_file(char *file)
 	check_file = NULL;
 	check_file = ft_strrchr(file, '.');
 	if (!check_file)
-		ft_error_parse("Usage : ./fdf <map.fdf>\n"
+		ft_error("Usage : ./fdf <map.fdf>\n"
 			KYEL"	-> File is invalid / Does not exist <-\n"KNRM);
 	if (ft_strcmp(check_file, ".fdf") != 0)
-		ft_error_parse("Usage : ./fdf <map.fdf>\n"
+		ft_error("Usage : ./fdf <map.fdf>\n"
 			KYEL"	-> File has an invalid extension <-\n"KNRM);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error_parse("Usage : ./fdf <map.fdf>\n"
+		ft_error("Usage : ./fdf <map.fdf>\n"
 			KYEL"	-> File cannot be opened / Does not exist <-\n"KNRM);
 }
