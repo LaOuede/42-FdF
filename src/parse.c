@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/05 19:11:02 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/06 08:35:58 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_parse_map(t_fdf *ms, char *file)
 /* 	fd = open(file, O_DIRECTORY);
 	if (!fd)
 		exit(EXIT_FAILURE); */
+	
 	fd = open(file, O_RDONLY);
 	while (1)
 	{

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
+#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/05 19:08:57 by gwenolalero      ###   ########.fr        #
+#    Updated: 2023/04/06 08:38:07 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	= 	-g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	= 	-g -Wall -Wextra -Werror 
+#-fsanitize=address
 
 # Remove
 RM		=	rm -rf

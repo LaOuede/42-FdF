@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_free_tab_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 13:51:24 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/02/10 13:52:04 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/06 09:09:54 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_free_tab(char **tab)
+char	*ft_free_tab_int(int **tab, size_t len)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
+	while (len-- > 0)
+		free(tab[len]);
 	free(tab);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/05 17:37:12 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/06 09:04:42 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ int	main(int argc, char **argv)
 	ft_parse_file(argv[1]);
 	ft_parse_map(ms, argv[1]);
 	ft_get_map(ms, argv[1]);
+	printf("\nms->infos.matrix : \n");
+	for(int rows = 0; rows < ms->infos.height; rows++)
+		{
+		for(int columns = 0; columns < ms->infos.width; columns++)
+		{
+			printf("%d ", ms->infos.matrix[rows][columns]);
+		}
+		printf("\n");
+	}
+	ft_free_tab_int(ms->infos.matrix, (size_t)ms->infos.height);
 	free(ms);
 	return (0);
 }
