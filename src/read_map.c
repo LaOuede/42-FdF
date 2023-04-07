@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 11:10:18 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:04:27 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_extract_points(t_fdf *ms, char *line)
 
 	point = ft_split(line, ' ');
 	column = -1;
-	while (++column < ms->infos->width)
-		ms->infos->matrix[row][column] = ft_atoi(point[column]);
+	while (++column < ms->map->width)
+		ms->map->matrix[row][column] = ft_atoi(point[column]);
 	row++;
 	ft_free_tab_char(point);
 }
@@ -48,15 +48,15 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 			break ;
 		if (flag == 0)
 			ft_map_width(ms, line);
-		if (ms->infos->color == F)
+		if (ms->map->color == F)
 			ft_map_is_colored(ms, line);
 		free(line);
-		ms->infos->height++;
+		ms->map->height++;
 		flag = 42;
 	}
-	ft_printf("width = %d\n", ms->infos->width);
-	ft_printf("height = %d\n", ms->infos->height);
-	ft_printf("color = %d\n", ms->infos->color);
+	ft_printf("width = %d\n", ms->map->width);
+	ft_printf("height = %d\n", ms->map->height);
+	ft_printf("color = %d\n", ms->map->color);
 	close (fd);
 }
 
@@ -84,8 +84,8 @@ void	ft_read_map(t_fdf *ms, char *file)
 		free(line);
 	}
 	ft_find_z(ms);
-	ft_printf("z_max = %d\n", ms->infos->z_max);
-	ft_printf("z_min = %d\n", ms->infos->z_min);
+	ft_printf("z_max = %d\n", ms->map->z_max);
+	ft_printf("z_min = %d\n", ms->map->z_min);
 	ft_print_matrix(ms);
 	close (fd);
 }

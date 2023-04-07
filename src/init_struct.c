@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 11:16:41 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:30:31 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,46 @@ void	ft_init_mlx(t_fdf *ms)
 	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(ms->mlx, ms->image, 77, 77);
+	mlx_put_pixel(ms->image, 0, 0, 0xFF0000FF);
 	mlx_loop(ms->mlx);
-	mlx_terminate(ms->mlx);
 }
 
 void	ft_init_matrix(t_fdf *ms)
 {
 	int	i;
 
-	ms->infos->matrix = ft_calloc(ms->infos->height, sizeof (int *));
-	if (!ms->infos->matrix)
+	ms->map->matrix = ft_calloc(ms->map->height, sizeof (int *));
+	if (!ms->map->matrix)
 		exit(EXIT_FAILURE);
 	i = -1;
-	while (++i < ms->infos->height)
+	while (++i < ms->map->height)
 	{
-		ms->infos->matrix[i] = ft_calloc(ms->infos->width, sizeof (int));
-		if (!ms->infos->matrix[i])
+		ms->map->matrix[i] = ft_calloc(ms->map->width, sizeof (int));
+		if (!ms->map->matrix[i])
 		{
-			ft_free_tab_int(ms->infos->matrix, ms->infos->height);
+			ft_free_tab_int(ms->map->matrix, ms->map->height);
 			exit(EXIT_FAILURE);
 		}
 	}
 }
 
-t_map	*ft_init_infos(void)
+t_infos	*ft_init_infos(void)
 {
-	static t_map	*infos;
+	static t_infos	*map;
 
-	if (!infos)
+	if (!map)
 	{
-		infos = malloc(sizeof(*infos) * 1);
-		if (!infos)
+		map = malloc(sizeof(*map) * 1);
+		if (!map)
 			return (NULL);
-		infos->height = 0;
-		infos->width = 0;
-		infos->z_max = INT_MIN;
-		infos->z_min = INT_MAX;
-		infos->color = F;
-		infos->matrix = 0;
+		map->height = 0;
+		map->width = 0;
+		map->z_max = INT_MIN;
+		map->z_min = INT_MAX;
+		map->color = F;
+		map->matrix = 0;
 	}
-	return (infos);
+	return (map);
 }
 
 t_fdf	*ft_init_ms(void)
@@ -68,7 +68,7 @@ t_fdf	*ft_init_ms(void)
 		ms = ft_calloc(sizeof(*ms), 1);
 		if (!ms)
 			return (NULL);
-		ms->infos = ft_init_infos();
+		ms->map = ft_init_infos();
 	}
 	return (ms);
 }

@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/07 11:40:13 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/07 12:08:22 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,8 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	= 	-g -Wall -Wextra -Werror 
-#CFLAGS	= 	-fsanitize=address
+#CFLAGS	= 	-g -Wall -Wextra -Werror 
+CFLAGS	= 	-fsanitize=address
 
 # Remove
 RM		=	rm -rf
@@ -139,7 +139,9 @@ $(MLX42):
 		brew install glfw &> /dev/null; \
 	fi
 	@echo "$W------------------------- $Zlibmlx42.a $W--------------------------\n"
-	@cmake MLX42 -B $(MLX42_DIR) &> /dev/null && make -C $(MLX42_DIR) -j4
+	@if [ ! -f "lib/MLX42/build/libmlx42.a" ]; then \
+		cmake MLX42 -B $(MLX42_DIR) &> /dev/null && make -C $(MLX42_DIR) -j4; \
+	fi
 	@echo "\n$W---------------------- $Zmlx42 is $Gdone ✅ $W-----------------------\n"
 	
 $(LIBFT):
@@ -166,9 +168,9 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT)
 	@$(RM) $(PRINTF)
-	@$(RM) ./lib
+#	@$(RM) ./lib
 	@echo "\n$W-------- $ZAll exec. and archives successfully $Rdeleted ❌$W--------\n"
-	@echo "$W>>>>>>>>>>>>>>>>>>>>> $ZCleaning is $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<<\n\n"
+	@echo "$W>>>>>>>>>>>>>>>>>>>>> $ZCleaning is $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<<\n"
 
 # Remove objects and executables and remake
 re: fclean
