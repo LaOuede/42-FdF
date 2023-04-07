@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 12:04:27 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:13:40 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 		ms->map->height++;
 		flag = 42;
 	}
-	ft_printf("width = %d\n", ms->map->width);
-	ft_printf("height = %d\n", ms->map->height);
-	ft_printf("color = %d\n", ms->map->color);
 	close (fd);
 }
 
@@ -84,8 +81,6 @@ void	ft_read_map(t_fdf *ms, char *file)
 		free(line);
 	}
 	ft_find_z(ms);
-	ft_printf("z_max = %d\n", ms->map->z_max);
-	ft_printf("z_min = %d\n", ms->map->z_min);
-	ft_print_matrix(ms);
+	ft_print_infos(ms);
 	close (fd);
 }

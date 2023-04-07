@@ -3,20 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 12:04:38 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:20:29 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_print_matrix(t_fdf *ms)
+void	ft_draw_something(t_fdf *ms)
 {
-	ft_printf("\nMAP / ms->map.matrix : \n");
-	for(int rows = 0; rows < ms->map->height; rows++)
+	for (uint32_t x = 0; x < 77; ++x)
+	{
+		for (uint32_t y = 0; y < 25; ++y)
 		{
+			mlx_put_pixel(ms->image, x, y, 0xFF0000FF);
+		}
+	}
+}
+
+void	ft_print_infos(t_fdf *ms)
+{
+	ft_printf("\n******* MAP infos : ******\n");
+	ft_printf("   -> width  ="KYEL"  %d\n"KNRM, ms->map->width);
+	ft_printf("   -> height ="KYEL"  %d\n"KNRM, ms->map->height);
+	ft_printf("   -> color  ="KYEL"  %d\n"KNRM, ms->map->color);
+	ft_printf("   -> z_max  ="KYEL"  %d\n"KNRM, ms->map->z_max);
+	ft_printf("   -> z_min  ="KYEL"  %d\n"KNRM, ms->map->z_min);
+	ft_printf("\n>>>>>> MAP / ms->map.matrix : <<<<<<\n");
+	for(int rows = 0; rows < ms->map->height; rows++)
+	{
 		for(int columns = 0; columns < ms->map->width; columns++)
 		{
 			printf("%d ", ms->map->matrix[rows][columns]);

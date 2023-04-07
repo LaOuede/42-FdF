@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 12:30:31 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:19:53 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_init_mlx(t_fdf *ms)
+bool	ft_init_mlx(t_fdf *ms)
 {
 	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(ms->mlx, ms->image, 77, 77);
-	mlx_put_pixel(ms->image, 0, 0, 0xFF0000FF);
-	mlx_loop(ms->mlx);
+	mlx_image_to_window(ms->mlx, ms->image, 0, 0);
+	if (!ms->mlx || !ms->image
+		|| (mlx_image_to_window(ms->mlx, ms->image, WIDTH, HEIGHT) == 0))
+		ft_clean_up(ms, KRED"MLX initialization failed\n"KNRM);
+	return (T);
 }
 
 void	ft_init_matrix(t_fdf *ms)
