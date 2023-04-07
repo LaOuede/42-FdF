@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 10:35:00 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:16:41 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	ft_init_matrix(t_fdf *ms)
 {
 	int	i;
 
-	ms->infos.matrix = ft_calloc(ms->infos.height, sizeof (int *));
-	if (!ms->infos.matrix)
+	ms->infos->matrix = ft_calloc(ms->infos->height, sizeof (int *));
+	if (!ms->infos->matrix)
 		exit(EXIT_FAILURE);
 	i = -1;
-	while (++i < ms->infos.height)
+	while (++i < ms->infos->height)
 	{
-		ms->infos.matrix[i] = ft_calloc(ms->infos.width, sizeof (int));
-		if (!ms->infos.matrix[i])
+		ms->infos->matrix[i] = ft_calloc(ms->infos->width, sizeof (int));
+		if (!ms->infos->matrix[i])
 		{
-			ft_free_tab_int(ms->infos.matrix, ms->infos.height);
+			ft_free_tab_int(ms->infos->matrix, ms->infos->height);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -46,7 +46,7 @@ t_map	*ft_init_infos(void)
 
 	if (!infos)
 	{
-		infos = ft_calloc(sizeof(*infos), 1);
+		infos = malloc(sizeof(*infos) * 1);
 		if (!infos)
 			return (NULL);
 		infos->height = 0;
@@ -68,6 +68,7 @@ t_fdf	*ft_init_ms(void)
 		ms = ft_calloc(sizeof(*ms), 1);
 		if (!ms)
 			return (NULL);
+		ms->infos = ft_init_infos();
 	}
 	return (ms);
 }

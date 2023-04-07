@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 10:59:26 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:16:16 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ typedef struct s_map
 
 typedef struct s_fdf
 {
-	t_map		infos;
+	t_map		*infos;
 	t_map_point	point;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
-void	ft_clean_up(t_fdf *ms, t_map *infos, char *err_msg);
+void	ft_clean_up(t_fdf *ms, char *err_msg);
 void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);

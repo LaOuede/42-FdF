@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/07 11:01:47 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/07 11:40:13 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,14 +140,12 @@ $(MLX42):
 	fi
 	@echo "$W------------------------- $Zlibmlx42.a $W--------------------------\n"
 	@cmake MLX42 -B $(MLX42_DIR) &> /dev/null && make -C $(MLX42_DIR) -j4
-	@echo "\n$W---------------------- $Zmlx42 is $Gdone ✅ $W-----------------------"
+	@echo "\n$W---------------------- $Zmlx42 is $Gdone ✅ $W-----------------------\n"
 	
 $(LIBFT):
-	@echo "\n$W-------------------------- $Zlibft.a $W----------------------------"
 	@make -C $(LIBFT_DIR)
 
 $(PRINTF):
-	@echo "\n$W-------------------------- $Zprintf.a $W---------------------------"
 	@make -C $(PRINTF_DIR)
 
 # Create all files .o (object) from files .c (source code)

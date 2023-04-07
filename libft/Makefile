@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/06 09:01:03 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/07 11:44:16 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,17 +100,20 @@ Z = $(shell tput -Txterm setaf 5)
 C = $(shell tput -Txterm setaf 6)
 W = $(shell tput -Txterm setaf 7)
 
+# Print settings
+ERASE_LINE	=	\033[2K\r
+
 # Creation of the executable
 all: dir $(NAME)
 
 # Compile library
 $(NAME): $(OBJS)
 	@$(ARCH) $(NAME) $(OBJS)
-	@echo "\n\n$W----------------------- $Zlibft is $Gdone ✅$W ----------------------"
+	@echo "$(ERASE_LINE)$W----------------------- $Zlibft is $Gdone ✅$W ----------------------\n"
 
 # Create all files .o (object) from files .c (source code)
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
-	@printf "\n $GCompiling : $Z$(notdir $<)"
+	@printf "$(ERASE_LINE) $GCompiling : $Z$(notdir $<)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 #Create directory for *.o files
