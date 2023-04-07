@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/06 11:54:05 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:59:26 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
+# include <limits.h>
 
 /* --------------------COLORS--------------------- */
 # define KNRM "\x1B[m"
@@ -75,20 +76,22 @@ typedef struct s_fdf
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
-void	ft_error(char *err_msg);
+void	ft_clean_up(t_fdf *ms, t_map *infos, char *err_msg);
+void	ft_error(char *err_msg, int fd);
+void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);
+void	ft_find_z(t_fdf *ms);
 t_map	*ft_init_infos(void);
 void	ft_init_matrix(t_fdf *ms);
 void	ft_init_mlx(t_fdf *ms);
 t_fdf	*ft_init_ms(void);
 void	ft_map_is_colored(t_fdf *ms, char *str);
 void	ft_map_width(t_fdf *ms, char *line);
-void	ft_parse_file(char *file);
-void	ft_parse_map(t_fdf *ms, char *file);
+void	ft_parse_file(t_fdf *ms, char *file);
 void	ft_read_map(t_fdf *ms, char *file);
-int		ft_valid_char(char c);
 
 /* ----------------UTILS FUNCTIONS----------------- */
 void	ft_print_matrix(t_fdf *ms);
+int		ft_valid_char(char c);
 
 #endif

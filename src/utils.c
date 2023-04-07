@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/06 11:54:01 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:04:09 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ void	ft_print_matrix(t_fdf *ms)
 		}
 		printf("\n");
 	}
+}
+
+int	ft_valid_char(char c)
+{
+	if (c == '-' || c == 'x' || c == 'F' || c == 'f' || c == ',')
+		return (1);
+	if ('0' <= c && c <= '9')
+		return (1);
+	return (0);
 }

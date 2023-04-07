@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/06 10:59:07 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/07 11:01:47 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ Y = $(shell tput -Txterm setaf 3)
 Z = $(shell tput -Txterm setaf 5)
 C = $(shell tput -Txterm setaf 6)
 W = $(shell tput -Txterm setaf 7)
+
+# Print settings
+ERASE_LINE	=	\033[2K\r
 
 #------------------------------------------------------------------------------#
 #                                   TOOLS                                      #
@@ -64,12 +67,12 @@ NAME		=	fdf
 
 # Dir. and files names
 SRCS_DIR	=	./src/
-SRCS_LIST	=	clean_up.c \
+SRCS_LIST	=	clean.c \
 				fdf.c \
 				init_struct.c \
 				parse.c \
-				parse_utils.c \
 				read_map.c \
+				read_map_utils.c \
 				utils.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 

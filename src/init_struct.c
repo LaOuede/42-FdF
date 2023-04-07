@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/06 17:27:51 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/07 10:35:00 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ t_map	*ft_init_infos(void)
 			return (NULL);
 		infos->height = 0;
 		infos->width = 0;
-		infos->z_max = 0;
-		infos->z_min = 0;
+		infos->z_max = INT_MIN;
+		infos->z_min = INT_MAX;
 		infos->color = F;
 		infos->matrix = 0;
 	}
@@ -71,4 +71,3 @@ t_fdf	*ft_init_ms(void)
 	}
 	return (ms);
 }
-

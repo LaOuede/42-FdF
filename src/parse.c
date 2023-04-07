@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:03:02 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/06 17:26:07 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/07 10:18:51 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Checks :
 	- if .fdf is a file and not a directory,
 	- if the file can be opened.
 */
-void	ft_parse_file(char *file)
+void	ft_parse_file(t_fdf *ms, char *file)
 {
 	int		fd;
 	char	*check_file;
@@ -27,18 +27,14 @@ void	ft_parse_file(char *file)
 	check_file = NULL;
 	check_file = ft_strrchr(file, '.');
 	if (!check_file)
-		ft_error("Usage : ./fdf <map.fdf>\n"
-			KYEL"	-> File is invalid / Does not exist <-\n"KNRM);
+		ft_clean_up(ms, &ms->infos, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File is invalid <-\n"KNRM);
 	if (ft_strcmp(check_file, ".fdf") != 0)
-		ft_error("Usage : ./fdf <map.fdf>\n"
+		ft_clean_up(ms, &ms->infos, "Usage : ./fdf <map.fdf>\n"
 			KYEL"	-> File has an invalid extension <-\n"KNRM);
-/* 	fd = open(file, O_DIRECTORY);
-	if (fd)
-		exit(EXIT_FAILURE);
-	close(fd); */
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error("Usage : ./fdf <map.fdf>\n"
-			KYEL"	-> File cannot be opened / Does not exist <-\n"KNRM);
+		ft_clean_up(ms, &ms->infos, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File can't be opened OR File doesn't exist <-\n"KNRM);
 	close(fd);
 }
