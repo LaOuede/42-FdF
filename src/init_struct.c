@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 17:19:53 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/07 19:03:47 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	ft_init_matrix(t_fdf *ms)
 {
 	int	i;
 
-	ms->map->matrix = ft_calloc(ms->map->height, sizeof (int *));
+	ms->map->matrix = ft_calloc(ms->map->height, sizeof(int *));
 	if (!ms->map->matrix)
 		exit(EXIT_FAILURE);
 	i = -1;
 	while (++i < ms->map->height)
 	{
-		ms->map->matrix[i] = ft_calloc(ms->map->width, sizeof (int));
+		ms->map->matrix[i] = ft_calloc(ms->map->width, sizeof(int));
 		if (!ms->map->matrix[i])
 		{
 			ft_free_tab_int(ms->map->matrix, ms->map->height);
@@ -48,9 +48,7 @@ t_infos	*ft_init_infos(void)
 
 	if (!map)
 	{
-		map = malloc(sizeof(*map) * 1);
-		if (!map)
-			return (NULL);
+		map = ft_calloc(sizeof(t_infos), 1);
 		map->height = 0;
 		map->width = 0;
 		map->z_max = INT_MIN;
@@ -67,9 +65,7 @@ t_fdf	*ft_init_ms(void)
 
 	if (!ms)
 	{
-		ms = ft_calloc(sizeof(*ms), 1);
-		if (!ms)
-			return (NULL);
+		ms = ft_calloc(sizeof(t_fdf), 1);
 		ms->map = ft_init_infos();
 	}
 	return (ms);

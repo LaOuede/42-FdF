@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 16:13:40 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/07 19:04:58 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 		if (ms->map->color == F)
 			ft_map_is_colored(ms, line);
 		free(line);
-		ms->map->height++;
+		(ms->map->height)++;
 		flag = 42;
 	}
 	close (fd);
