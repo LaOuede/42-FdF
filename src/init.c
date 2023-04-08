@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 19:03:47 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/08 11:51:15 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/* Initialize and set the graphic library and the window */
 bool	ft_init_mlx(t_fdf *ms)
 {
 	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
@@ -23,6 +24,7 @@ bool	ft_init_mlx(t_fdf *ms)
 	return (T);
 }
 
+/* Initialize the two-dimensioonnal array. */
 void	ft_init_matrix(t_fdf *ms)
 {
 	int	i;
@@ -42,6 +44,7 @@ void	ft_init_matrix(t_fdf *ms)
 	}
 }
 
+/* Initialize the structure containing the informations from the <.fdf> file. */
 t_infos	*ft_init_infos(void)
 {
 	static t_infos	*map;
@@ -59,6 +62,7 @@ t_infos	*ft_init_infos(void)
 	return (map);
 }
 
+/* Initialize the meta structure (if it doesn't exist) and returns it. */
 t_fdf	*ft_init_ms(void)
 {
 	static t_fdf	*ms;

@@ -6,12 +6,13 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 19:04:58 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/08 11:47:03 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/* Extracts points from the map and store them in a two-dimensionnal array */
 void	ft_extract_points(t_fdf *ms, char *line)
 {
 	int				column;

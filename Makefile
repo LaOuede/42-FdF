@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
+#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/07 12:08:22 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/08 11:44:21 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ NAME		=	fdf
 SRCS_DIR	=	./src/
 SRCS_LIST	=	clean.c \
 				fdf.c \
-				init_struct.c \
+				init.c \
 				parse.c \
 				read_map.c \
 				read_map_utils.c \
