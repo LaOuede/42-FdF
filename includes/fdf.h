@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/10 16:23:24 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 17:44:19 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ typedef struct s_infos
 	int			z_max;
 	enum flag	color;
 	int			**matrix;
-	double		x_center;
-	double		y_center;
 	double		x_start;
 	double		y_start;
 	int			scale;
@@ -82,7 +80,7 @@ void	ft_find_z(t_fdf *ms);
 void	ft_get_starting_points(t_fdf *ms);
 t_infos	*ft_init_infos(void);
 void	ft_init_matrix(t_fdf *ms);
-bool	ft_init_mlx(t_fdf *ms);
+bool	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
 void	ft_map_is_colored(t_fdf *ms, char *str);
 void	ft_map_width(t_fdf *ms, char *line);

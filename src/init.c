@@ -6,16 +6,17 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/10 16:23:43 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 17:44:15 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /* Initialize and set the graphic library and the window */
-bool	ft_init_mlx(t_fdf *ms)
+bool	ft_init_mlx(t_fdf *ms, char *file)
 {
-	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
+	//ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
+	ms->mlx = mlx_init(WIDTH, HEIGHT, file, false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	ft_get_starting_points(ms);
 	mlx_image_to_window(ms->mlx, ms->image, ms->map->x_start, ms->map->y_start);
@@ -59,8 +60,6 @@ t_infos	*ft_init_infos(void)
 		map->z_min = INT_MAX;
 		map->color = F;
 		map->matrix = 0;
-		map->x_center = map->width / 2;
-		map->y_center = map->height / 2;
 		map->x_start = 0;
 		map->y_start = 0;
 		map->scale = 25;

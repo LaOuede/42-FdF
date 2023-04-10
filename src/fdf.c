@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	ms = ft_init_ms();
 	ft_parse_file(ms, argv[1]);
 	ft_read_map(ms, argv[1]);
-	if (ft_init_mlx(ms) == T)
+	if (ft_init_mlx(ms, argv[1]) == T)
 	{
 		//ft_draw_cross(ms);
 		ft_draw_map_square(ms);
