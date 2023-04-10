@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/08 11:51:15 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 15:52:17 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 /* Initialize and set the graphic library and the window */
 bool	ft_init_mlx(t_fdf *ms)
 {
+	//get_x_y_start(ms);
 	ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(ms->mlx, ms->image, 0, 0);
+	mlx_image_to_window(ms->mlx, ms->image, ms->map->x_start, ms->map->y_start);
 	if (!ms->mlx || !ms->image
 		|| (mlx_image_to_window(ms->mlx, ms->image, WIDTH, HEIGHT) == 0))
 		ft_clean_up(ms, KRED"MLX initialization failed\n"KNRM);
@@ -58,6 +59,12 @@ t_infos	*ft_init_infos(void)
 		map->z_min = INT_MAX;
 		map->color = F;
 		map->matrix = 0;
+		map->x_center = map->width / 2;
+		map->y_center = map->height / 2;
+		map->x_start = 0;
+		map->y_start = 0;
+		map->opp = 0;
+		map->adj = 0;
 	}
 	return (map);
 }

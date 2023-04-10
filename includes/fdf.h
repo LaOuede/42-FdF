@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 17:18:10 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 15:48:41 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 # define KWHT "\x1B[37m"
 
 /* ----------------WINDOW SETTINGS----------------- */
-# define WIDTH 960
-# define HEIGHT 540
-/* # define WIDTH 1920
-# define HEIGHT 1080 */
+/* # define WIDTH 960
+# define HEIGHT 540 */
+# define WIDTH 1920
+# define HEIGHT 1080
 
 /* -------------------STRUCTURES------------------- */
 typedef enum flag
@@ -59,6 +59,12 @@ typedef struct s_infos
 	int			z_max;
 	enum flag	color;
 	int			**matrix;
+	double		x_center;
+	double		y_center;
+	double		x_start;
+	double		y_start;
+	double		opp;
+	double		adj;
 }	t_infos;
 
 typedef struct s_fdf
@@ -86,6 +92,8 @@ void	ft_read_map(t_fdf *ms, char *file);
 /* ----------------UTILS FUNCTIONS----------------- */
 void	ft_print_infos(t_fdf *ms);
 int		ft_valid_char(char c);
-void	ft_draw_something(t_fdf *ms);
+void	ft_draw_map_square(t_fdf *ms);
+void	ft_draw_cross(t_fdf *ms);
+void	get_x_y_start(t_fdf *ms);
 
 #endif
