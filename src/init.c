@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/10 17:44:15 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 17:45:18 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /* Initialize and set the graphic library and the window */
 bool	ft_init_mlx(t_fdf *ms, char *file)
 {
-	//ms->mlx = mlx_init(WIDTH, HEIGHT, "FDF  ~gle-roux🐭~", false);
 	ms->mlx = mlx_init(WIDTH, HEIGHT, file, false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	ft_get_starting_points(ms);
