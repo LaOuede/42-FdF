@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/10 15:49:34 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 16:12:35 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	ft_read_map(ms, argv[1]);
 	if (ft_init_mlx(ms) == T)
 	{
-		ft_draw_cross(ms);
+		//ft_draw_cross(ms);
 		ft_draw_map_square(ms);
 		mlx_loop(ms->mlx);
 	}

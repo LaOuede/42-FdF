@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/10 15:48:41 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 16:23:24 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ typedef struct s_infos
 	double		y_center;
 	double		x_start;
 	double		y_start;
-	double		opp;
-	double		adj;
+	int			scale;
 }	t_infos;
 
 typedef struct s_fdf
@@ -80,6 +79,7 @@ void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);
 void	ft_find_z(t_fdf *ms);
+void	ft_get_starting_points(t_fdf *ms);
 t_infos	*ft_init_infos(void);
 void	ft_init_matrix(t_fdf *ms);
 bool	ft_init_mlx(t_fdf *ms);
@@ -92,8 +92,7 @@ void	ft_read_map(t_fdf *ms, char *file);
 /* ----------------UTILS FUNCTIONS----------------- */
 void	ft_print_infos(t_fdf *ms);
 int		ft_valid_char(char c);
-void	ft_draw_map_square(t_fdf *ms);
 void	ft_draw_cross(t_fdf *ms);
-void	get_x_y_start(t_fdf *ms);
+void	ft_draw_map_square(t_fdf *ms);
 
 #endif

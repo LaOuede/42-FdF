@@ -6,7 +6,7 @@
 #    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/08 11:44:21 by gwenolalero      ###   ########.fr        #
+#    Updated: 2023/04/10 16:35:11 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ NAME		=	fdf
 # Dir. and files names
 SRCS_DIR	=	./src/
 SRCS_LIST	=	clean.c \
+				draw.c \
 				fdf.c \
 				init.c \
 				parse.c \

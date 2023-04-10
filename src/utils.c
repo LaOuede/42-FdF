@@ -6,64 +6,18 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/10 15:56:01 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/10 16:37:05 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/* Get the starting points on the screen */
-/* void	get_x_y_start(t_fdf *ms)
-{
-	ms->map->x_start = (WIDTH / 2) - (ms->map->width / 2);
-	ms->map->y_start = (HEIGHT / 2) + (ms->map->height / 2);
-} */
-
-/* Draw the points of the map */
-void	ft_draw_map_square(t_fdf *ms)
-{
-	double	x;
-	double	y;
-
-	x = 0;
-	while (x < (ms->map->width * 10))
-	{
-		y = 0;
-		while (y < (ms->map->height * 10))
-		{
-			if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
-				ft_clean_up(ms, KRED"Coordinates error\n"KNRM);
-			mlx_put_pixel(ms->image, x, y, 0xFF0000FF);
-			y += 10;
-		}
-		x += 10;
-	}
-}
-
-/* Draw a cross passing by the center of the window*/
-void	ft_draw_cross(t_fdf *ms)
-{
-	int	x = 0;
-	int	y = 0;
-
-	while (x < WIDTH)
-	{
-		y = HEIGHT / 2;
-		mlx_put_pixel(ms->image, x, y, 0xFFFF33);
-		++x;
-	}
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = WIDTH / 2;
-		mlx_put_pixel(ms->image, x, y, 0xFFFF33);
-		++y;
-	}
-}
-
 /* Print map infos*/
 void	ft_print_infos(t_fdf *ms)
 {
+	int	rows;
+	int	columns;
+
 	ft_printf("\n******* MAP infos : ******\n");
 	ft_printf("   -> width  ="KYEL"  %d\n"KNRM, ms->map->width);
 	ft_printf("   -> height ="KYEL"  %d\n"KNRM, ms->map->height);
@@ -71,12 +25,12 @@ void	ft_print_infos(t_fdf *ms)
 	ft_printf("   -> z_max  ="KYEL"  %d\n"KNRM, ms->map->z_max);
 	ft_printf("   -> z_min  ="KYEL"  %d\n"KNRM, ms->map->z_min);
 	ft_printf("\n>>>>>> MAP / ms->map.matrix : <<<<<<\n");
-	for(int rows = 0; rows < ms->map->height; rows++)
+	rows = -1;
+	while (++rows < ms->map->height)
 	{
-		for(int columns = 0; columns < ms->map->width; columns++)
-		{
+		columns = -1;
+		while (++columns < ms->map->width)
 			printf("%d ", ms->map->matrix[rows][columns]);
-		}
 		printf("\n");
 	}
 }
