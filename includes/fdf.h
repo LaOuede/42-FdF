@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/11 15:26:49 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:34:28 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ typedef struct s_infos
 	double			x_start;
 	double			y_start;
 	double			scale;
-	double			test;
+	double			x_offset;
+	double			y_offset;
 	
 }	t_infos;
 

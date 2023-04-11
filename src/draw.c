@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/11 15:29:53 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:35:11 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_draw_map_square(t_fdf *ms)
 		y = 0;
 		while (y < (ms->map->height * ms->map->scale))
 		{
-			mlx_put_pixel(ms->image, (x + ms->map->test), y, 0xFFFFFF);
+			mlx_put_pixel(ms->image, (x + ms->map->x_offset), (y + ms->map->y_offset), 0xFFFFFF);
 			y += ms->map->scale;
 		}
 		x += ms->map->scale;

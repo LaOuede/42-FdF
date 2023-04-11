@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/11 15:24:59 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:34:36 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	ft_translation(t_fdf *ms, keys_t key)
 {
 	ft_draw_map_erase(ms);
 	if (key == MLX_KEY_RIGHT)
-		ms->map->test += 10;
+		ms->map->x_offset += 10;
 	if (key == MLX_KEY_LEFT)
-		ms->map->test -= 10;
+		ms->map->x_offset -= 10;
+	if (key == MLX_KEY_UP)
+		ms->map->y_offset += 10;
+	if (key == MLX_KEY_DOWN)
+		ms->map->y_offset -= 10;
 	ft_draw_map_square(ms);
 }
 

@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"sstream": "c",
-		"mlx42.h": "c"
+		"mlx42.h": "c",
+		"bitset": "c"
 	}
 }
