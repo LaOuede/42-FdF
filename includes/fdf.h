@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/10 17:44:19 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/11 15:26:49 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42_Input.h"
 # include "../libft/includes/libft.h"
 # include "../ft_printf/includes/ft_printf.h"
 # include <fcntl.h> // O_RDONLY
@@ -43,6 +44,7 @@
 # define HEIGHT 540 */
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MARGE 100
 
 /* -------------------STRUCTURES------------------- */
 typedef enum flag
@@ -53,15 +55,17 @@ typedef enum flag
 
 typedef struct s_infos
 {
-	int			width;
-	int			height;
-	int			z_min;
-	int			z_max;
-	enum flag	color;
-	int			**matrix;
-	double		x_start;
-	double		y_start;
-	int			scale;
+	double			width;
+	double			height;
+	double			z_min;
+	double			z_max;
+	enum	 flag	color;
+	int				**matrix;
+	double			x_start;
+	double			y_start;
+	double			scale;
+	double			test;
+	
 }	t_infos;
 
 typedef struct s_fdf
@@ -69,6 +73,7 @@ typedef struct s_fdf
 	t_infos		*map;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	keys_t		*keys;
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
@@ -76,6 +81,7 @@ void	ft_clean_up(t_fdf *ms, char *err_msg);
 void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);
+void	ft_fdf_keys(mlx_key_data_t keydata, void *param);
 void	ft_find_z(t_fdf *ms);
 void	ft_get_starting_points(t_fdf *ms);
 t_infos	*ft_init_infos(void);
@@ -91,6 +97,9 @@ void	ft_read_map(t_fdf *ms, char *file);
 void	ft_print_infos(t_fdf *ms);
 int		ft_valid_char(char c);
 void	ft_draw_cross(t_fdf *ms);
+void	ft_draw_map_erase(t_fdf *ms);
 void	ft_draw_map_square(t_fdf *ms);
+bool	ft_limits(t_fdf *ms);
+void	ft_find_scale(t_fdf *ms);
 
 #endif

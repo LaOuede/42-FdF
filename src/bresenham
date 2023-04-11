@@ -1,0 +1,61 @@
+
+
+
+/*
+** bresenham_line: bresenham algorithm to plot a line pixel by pixel
+** diff_x: distance that x need to advance
+** diff_y: distance that y need to advance
+*/
+
+void	bresenham_line(t_fdf *fdf, int **bmp)
+{
+	int		max;
+	long	z;
+	long	z1;
+
+	z = fdf->map[(int)fdf->init->y][(int)fdf->init->x].z;
+	z1 = fdf->map[(int)fdf->end->y][(int)fdf->end->x].z;
+	fdf->color = fdf->map[(int)fdf->init->y][(int)fdf->init->x].color;
+	fdf->color1 = fdf->map[(int)fdf->init->y][(int)fdf->init->x].color;
+	convert_zoom(fdf);
+	convert_isometric(fdf->init, z, fdf);
+	convert_isometric(fdf->end, z1, fdf);
+	convert_shift(fdf);
+	fdf->diff_x = fdf->end->x - fdf->init->x;
+	fdf->diff_y = fdf->end->y - fdf->init->y;
+	max = max_calculator(module(fdf->diff_x), module(fdf->diff_y));
+	fdf->diff_x /= max;
+	fdf->diff_y /= max;
+	set_color(fdf, bmp, z, z1);
+}
+
+
+/*
+** bresenham_loop: bresenham loop
+** fdf: fdf project
+*/
+
+void	bresenham_loop(t_fdf *fdf)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < fdf->mapy)
+	{
+		x = -1;
+		while (++x < fdf->mapx)
+		{
+			if (x < fdf->mapx - 1)
+			{
+				set_vertical(fdf, x, y);
+				bresenham_line(fdf, fdf->bmp);
+			}
+			if (y < fdf->mapy - 1)
+			{
+				set_horizontal(fdf, x, y);
+				bresenham_line(fdf, fdf->bmp);
+			}
+		}
+	}
+}
