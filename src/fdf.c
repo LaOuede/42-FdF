@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/11 14:42:50 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:17:44 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	main(int argc, char **argv)
 		//ft_draw_cross(ms);
 		//ft_find_scale(ms);
 		mlx_key_hook(ms->mlx, &ft_fdf_keys, ms);
+		ft_map_scale(ms);
+		ft_get_starting_points(ms);
+		ft_print_infos(ms);
 		ft_draw_map_square(ms);
 		mlx_loop(ms->mlx);
 	}

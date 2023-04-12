@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/08 11:47:03 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/12 15:44:25 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ void	ft_read_map(t_fdf *ms, char *file)
 		free(line);
 	}
 	ft_find_z(ms);
-	ft_print_infos(ms);
 	close (fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/11 15:36:16 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:59:21 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_translation(t_fdf *ms, keys_t key)
 {
-	ft_draw_map_erase(ms);
+	//ft_map_erase(ms);
 	if (key == MLX_KEY_RIGHT)
-		ms->map->x_offset += 10;
-	if (key == MLX_KEY_LEFT)
-		ms->map->x_offset -= 10;
-/* 	if (key == MLX_KEY_UP)
-		ms->map->y_offset += 10;
-	if (key == MLX_KEY_DOWN)
-		ms->map->y_offset -= 10; */
+		ms->cam->x_offset += 25;
+	else if (key == MLX_KEY_LEFT)
+		ms->cam->x_offset -= 25;
+	else if (key == MLX_KEY_UP)
+		ms->cam->y_offset -= 25;
+	else if (key == MLX_KEY_DOWN)
+		ms->cam->y_offset += 25;
 	ft_draw_map_square(ms);
 }
 
@@ -38,6 +38,8 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 		exit(EXIT_SUCCESS);
 	}
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_RIGHT)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_LEFT))
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_UP)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_DOWN))
 		ft_translation(ms, keydata.key);
 }
