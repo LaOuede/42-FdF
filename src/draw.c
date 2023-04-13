@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/13 11:32:19 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:48:05 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_draw_map_square(t_fdf *ms)
 				ms->coord->end_x = x + ms->cam->scale;
 				ms->coord->end_y = y;
 				ms->coord->end_z = ms->map->matrix[o][a + 1];
-				//ft_isometric(ms);
+				ft_isometric(ms);
 				ft_draw_line(ms);
 			}
 			if (y < (ms->map->y_start + ms->map->height * ms->cam->scale) - ms->cam->scale)
@@ -88,7 +88,7 @@ void	ft_draw_map_square(t_fdf *ms)
 				ms->coord->end_x = x;
 				ms->coord->end_y = y + ms->cam->scale;
 				ms->coord->end_z = ms->map->matrix[o + 1][a];
-				//ft_isometric(ms);
+				ft_isometric(ms);
 				ft_draw_line(ms);
 			}
 			x += ms->cam->scale;
@@ -126,7 +126,8 @@ void	ft_draw_map_square(t_fdf *ms)
 	}
 } */
 
-int get_rgba(int r, int g, int b, int a)
+/*PAS ISO*/
+/* int get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
@@ -181,9 +182,89 @@ void	ft_draw_line(t_fdf *ms)
 		}
 		ms->algo->y += 1;
 	}
+} */
+
+/* ISO */
+int get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-/* void	ft_draw_line(t_fdf *ms)
+void	ft_color(t_fdf *ms)
+{
+	if ((int)ms->coord->start_z < 0)
+		mlx_put_pixel(ms->image, (ms->algo->x + ms->cam->x_offset), \
+				(ms->algo->y + ms->cam->y_offset), get_rgba(51, 51, 255, 255));
+	else if ((int)ms->coord->start_z == 0)
+		mlx_put_pixel(ms->image, (ms->algo->x + ms->cam->x_offset), \
+				(ms->algo->y + ms->cam->y_offset), get_rgba(0, 0, 0, 255));
+	else if ((int)ms->coord->start_z > 0)
+		mlx_put_pixel(ms->image, (ms->algo->x + ms->cam->x_offset), \
+				(ms->algo->y + ms->cam->y_offset), get_rgba(0, 204, 0, 255));
+}
+
+void	ft_draw_line(t_fdf *ms)
+{
+	ms->algo->delta_x = fabs(ms->iso->end_x - ms->iso->start_x);
+	ms->algo->delta_y = fabs(ms->iso->end_y - ms->iso->start_y);
+	ms->algo->ptp = (2 * ms->algo->delta_y) - ms->algo->delta_x;
+	ms->algo->x = ms->iso->start_x;
+	ms->algo->y = ms->iso->start_y;
+	while(ms->algo->x < ms->iso->end_x)
+	{
+		if (ms->algo->ptp >= 0)
+		{
+			ft_color(ms);
+			ms->algo->y += 1;
+			ms->algo->ptp = ms->algo->ptp + 2 * ms->algo->delta_y - 2 * ms->algo->delta_x;
+		}
+		else
+		{
+			ft_color(ms);
+			ms->algo->ptp = ms->algo->ptp + 2 * ms->algo->delta_y;
+		}
+		ms->algo->x += 1;
+	}
+	while(ms->algo->y <= ms->iso->end_y)
+	{
+		if (ms->algo->ptp >= 0)
+		{
+			ft_color(ms);
+			ms->algo->ptp = ms->algo->ptp + 2 * ms->algo->delta_y - 2 * ms->algo->delta_x;
+		}
+		else
+		{
+			ft_color(ms);
+			ms->algo->x -= 1;
+			ms->algo->ptp = ms->algo->ptp + 2 * ms->algo->delta_y;
+		}
+		ms->algo->y += 1;
+	}
+}
+
+/* PAS ISO*/
+/* int get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	ft_color(t_fdf *ms)
+{
+	if ((int)ms->coord->start_z < 0)
+		mlx_put_pixel(ms->image, (ms->coord->start_x + \
+						ms->cam->x_offset), (ms->coord->start_y + \
+						ms->cam->y_offset), get_rgba(51, 51, 255, 255));
+	else if ((int)ms->coord->start_z == 0)
+		mlx_put_pixel(ms->image, (ms->coord->start_x + \
+						ms->cam->x_offset), (ms->coord->start_y + \
+						ms->cam->y_offset), get_rgba(0, 0, 0, 255));
+	else if ((int)ms->coord->start_z > 0)
+		mlx_put_pixel(ms->image, (ms->coord->start_x + \
+						ms->cam->x_offset), (ms->coord->start_y + \
+						ms->cam->y_offset), get_rgba(0, 204, 0, 255));
+}
+
+void	ft_draw_line(t_fdf *ms)
 {
 	int	pixel;
 
@@ -195,24 +276,53 @@ void	ft_draw_line(t_fdf *ms)
 	pixel = -1;
 	while (++pixel <= ms->algo->delta_max)
 	{
-		if (ms->coord->start_x >= 0 && ms->coord->start_y >= 0
+		if (ms->coord->start_x > 0 && ms->coord->start_y > 0
 			&& ms->coord->start_x < WIDTH && ms->coord->start_y < HEIGHT)
-		{
-		if ((int)ms->coord->start_z < 0)
-				mlx_put_pixel(ms->image, (ms->coord->start_x + \
-					ms->cam->x_offset), (ms->coord->start_y + \
-					ms->cam->y_offset), 0x34ebeb);
-			else if ((int)ms->coord->start_z == 0)
-				mlx_put_pixel(ms->image, (ms->coord->start_x + \
-					ms->cam->x_offset), (ms->coord->start_y + \
-					ms->cam->y_offset), 0xebdf34);
-			else if ((int)ms->coord->start_z > 0)
-				mlx_put_pixel(ms->image, (ms->coord->start_x + \
-					ms->cam->x_offset), (ms->coord->start_y + \
-					ms->cam->y_offset), 0xffffff);
-		}
+			ft_color(ms);
 		ms->coord->start_x += ms->algo->delta_x;
 		ms->coord->start_y += ms->algo->delta_y;
+	}
+} */
+
+/* ISO */
+/* int get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	ft_color(t_fdf *ms)
+{
+	if ((int)ms->coord->start_z < 0)
+		mlx_put_pixel(ms->image, (ms->iso->start_x + \
+						ms->cam->x_offset), (ms->iso->start_y + \
+						ms->cam->y_offset), get_rgba(51, 51, 255, 255));
+	else if ((int)ms->coord->start_z == 0)
+		mlx_put_pixel(ms->image, (ms->iso->start_x + \
+						ms->cam->x_offset), (ms->iso->start_y + \
+						ms->cam->y_offset), get_rgba(0, 0, 0, 255));
+	else if ((int)ms->coord->start_z > 0)
+		mlx_put_pixel(ms->image, (ms->iso->start_x + \
+						ms->cam->x_offset), (ms->iso->start_y + \
+						ms->cam->y_offset), get_rgba(0, 204, 0, 255));
+}
+
+void	ft_draw_line(t_fdf *ms)
+{
+	int	pixel;
+
+	ms->algo->delta_x = ms->iso->end_x - ms->iso->start_x;
+	ms->algo->delta_y = ms->iso->end_y - ms->iso->start_y;
+	ms->algo->delta_max = (int)fmax(fabs(ms->algo->delta_x), fabs(ms->algo->delta_y));
+	ms->algo->delta_x /= ms->algo->delta_max;
+	ms->algo->delta_y /= ms->algo->delta_max;
+	pixel = -1;
+	while (++pixel <= ms->algo->delta_max)
+	{
+		if (ms->iso->start_x > 0 && ms->iso->start_y > 0
+			&& ms->iso->start_x < WIDTH && ms->iso->start_y < HEIGHT)
+			ft_color(ms);
+		ms->iso->start_x += ms->algo->delta_x;
+		ms->iso->start_y += ms->algo->delta_y;
 	}
 } */
 
