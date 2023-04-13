@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/13 16:48:05 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:53:23 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_get_starting_points(t_fdf *ms)
 	}
 } */
 
-void	ft_draw_map_square(t_fdf *ms)
+void	ft_draw(t_fdf *ms)
 {
 	int	x;
 	int	y;
@@ -78,7 +78,7 @@ void	ft_draw_map_square(t_fdf *ms)
 				ms->coord->end_y = y;
 				ms->coord->end_z = ms->map->matrix[o][a + 1];
 				ft_isometric(ms);
-				ft_draw_line(ms);
+				ft_bresenham(ms);
 			}
 			if (y < (ms->map->y_start + ms->map->height * ms->cam->scale) - ms->cam->scale)
 			{
@@ -89,7 +89,7 @@ void	ft_draw_map_square(t_fdf *ms)
 				ms->coord->end_y = y + ms->cam->scale;
 				ms->coord->end_z = ms->map->matrix[o + 1][a];
 				ft_isometric(ms);
-				ft_draw_line(ms);
+				ft_bresenham(ms);
 			}
 			x += ms->cam->scale;
 			a++;
@@ -203,7 +203,7 @@ void	ft_color(t_fdf *ms)
 				(ms->algo->y + ms->cam->y_offset), get_rgba(0, 204, 0, 255));
 }
 
-void	ft_draw_line(t_fdf *ms)
+void	ft_bresenham(t_fdf *ms)
 {
 	ms->algo->delta_x = fabs(ms->iso->end_x - ms->iso->start_x);
 	ms->algo->delta_y = fabs(ms->iso->end_y - ms->iso->start_y);
@@ -235,7 +235,7 @@ void	ft_draw_line(t_fdf *ms)
 		else
 		{
 			ft_color(ms);
-			ms->algo->x -= 1;
+			ms->algo->x += 1;
 			ms->algo->ptp = ms->algo->ptp + 2 * ms->algo->delta_y;
 		}
 		ms->algo->y += 1;

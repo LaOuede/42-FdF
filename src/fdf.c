@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/12 18:17:44 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/13 16:52:57 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		ft_map_scale(ms);
 		ft_get_starting_points(ms);
 		ft_print_infos(ms);
-		ft_draw_map_square(ms);
+		ft_draw(ms);
 		mlx_loop(ms->mlx);
 	}
 	ft_clean_up(ms, 0);

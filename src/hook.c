@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/12 15:59:21 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/13 16:53:39 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_translation(t_fdf *ms, keys_t key)
 		ms->cam->y_offset -= 25;
 	else if (key == MLX_KEY_DOWN)
 		ms->cam->y_offset += 25;
-	ft_draw_map_square(ms);
+	ft_draw(ms);
 }
 
 void	ft_fdf_keys(mlx_key_data_t keydata, void *param)

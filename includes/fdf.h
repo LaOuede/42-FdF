@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/13 11:31:50 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:52:59 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_fdf
 
 /* --------------------FUNCTIONS------------------- */
 void	ft_clean_up(t_fdf *ms, char *err_msg);
-void	ft_draw_line(t_fdf *ms);
+void	ft_draw(t_fdf *ms);
 void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);
@@ -140,7 +140,7 @@ void	ft_print_infos(t_fdf *ms);
 int		ft_valid_char(char c);
 void	ft_draw_cross(t_fdf *ms);
 void	ft_map_erase(t_fdf *ms);
-void	ft_draw_map_square(t_fdf *ms);
+void	ft_bresenham(t_fdf *ms);
 bool	ft_limits(t_fdf *ms);
 void	ft_find_scale(t_fdf *ms);
 void	ft_map_scale(t_fdf *ms);
