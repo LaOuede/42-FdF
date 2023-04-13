@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/12 17:48:25 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/13 11:31:50 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef enum flag
 	T
 }	t_flag;
 
-typedef struct s_point
+typedef struct s_iso
 {
 	float	start_x;
 	float	start_y;
@@ -62,14 +62,26 @@ typedef struct s_point
 	float	end_x;
 	float	end_y;
 	float	end_z;
-}	t_point;
+}	t_iso;
+
+typedef struct s_line
+{
+	float	start_x;
+	float	start_y;
+	float	start_z;
+	float	end_x;
+	float	end_y;
+	float	end_z;
+}	t_line;
 
 typedef struct s_bresenham
 {
-	int	delta_x;
-	int	delta_y;
-	int	ptp;
-	int	delta_max;
+	float	x;
+	float	y;
+	float	delta_x;
+	float	delta_y;
+	float	ptp;
+	float	delta_max;
 }	t_bresenham;
 
 typedef struct s_camera
@@ -97,7 +109,8 @@ typedef struct s_fdf
 	t_infos		*map;
 	t_camera	*cam;
 	t_bresenham	*algo;
-	t_point		*coord;
+	t_line		*coord;
+	t_iso		*iso;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	keys_t		*keys;
@@ -116,6 +129,7 @@ t_infos	*ft_init_infos(void);
 void	ft_init_matrix(t_fdf *ms);
 bool	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
+void	ft_isometric(t_fdf *ms);
 void	ft_map_is_colored(t_fdf *ms, char *str);
 void	ft_map_width(t_fdf *ms, char *line);
 void	ft_parse_file(t_fdf *ms, char *file);

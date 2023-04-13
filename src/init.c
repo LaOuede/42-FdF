@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/12 18:17:33 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/13 11:30:20 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ t_bresenham	*ft_init_bresenham(void)
 	if (!algo)
 	{
 		algo = ft_calloc(sizeof(t_bresenham), 1);
+		algo->x = 0;
+		algo->y = 0;
 		algo->delta_x = 0;
 		algo->delta_y = 0;
 		algo->ptp = 0;
@@ -93,13 +95,13 @@ t_bresenham	*ft_init_bresenham(void)
 	return (algo);
 }
 
-t_point	*ft_init_point(void)
+t_line	*ft_init_line(void)
 {
-	static t_point	*coord;
+	static t_line	*coord;
 
 	if (!coord)
 	{
-		coord = ft_calloc(sizeof(t_point), 1);
+		coord = ft_calloc(sizeof(t_line), 1);
 		coord->start_x = 0;
 		coord->start_y = 0;
 		coord->start_z = 0;
@@ -108,6 +110,23 @@ t_point	*ft_init_point(void)
 		coord->end_z = 0;
 	}
 	return (coord);
+}
+
+t_iso	*ft_init_iso(void)
+{
+	static t_iso	*iso;
+
+	if (!iso)
+	{
+		iso = ft_calloc(sizeof(t_iso), 1);
+		iso->start_x = 0;
+		iso->start_y = 0;
+		iso->start_z = 0;
+		iso->end_x = 0;
+		iso->end_y = 0;
+		iso->end_z = 0;
+	}
+	return (iso);
 }
 
 /* Initialize the meta structure (if it doesn't exist) and returns it. */
@@ -121,7 +140,8 @@ t_fdf	*ft_init_ms(void)
 		ms->map = ft_init_infos();
 		ms->cam = ft_init_camera();
 		ms->algo = ft_init_bresenham();
-		ms->coord = ft_init_point();
+		ms->coord = ft_init_line();
+		ms->iso = ft_init_iso();
 	}
 	return (ms);
 }

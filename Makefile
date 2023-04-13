@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/11 13:06:56 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/13 11:25:16 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS_LIST	=	clean.c \
 				hook.c \
 				init.c \
 				parse.c \
+				projection.c \
 				read_map.c \
 				read_map_utils.c \
 				utils.c
@@ -193,6 +194,10 @@ text:
 # Open a character generator
 test:
 	@open https://www.browserling.com/tools/text-repeat
+	
+# Open a color picker
+colors:
+	@open https://www.w3schools.com/colors/colors_picker.asp
 
 # Run norminette
 norm :
@@ -201,4 +206,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf norm
+.PHONY: all dir clean fclean re help pdf norm colors
