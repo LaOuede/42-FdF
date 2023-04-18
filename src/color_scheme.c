@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:01:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 13:20:22 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:27:07 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_avernus(t_fdf *ms)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(77, 0, 0, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(153, 0, 0, 255));
@@ -31,8 +34,8 @@ void	ft_avernus(t_fdf *ms)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(230, 0, 0, 255));
-	else if (((int)ms->coord->sz == 0
-			&& (int)ms->coord->ez > 0) || (int)ms->coord->sz > 0)
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(255, 153, 0, 255));
@@ -44,20 +47,23 @@ void	ft_avernus(t_fdf *ms)
 
 void	ft_strahd(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0)
+	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(51, 51, 255, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+						ms->cam->y_offset), ft_get_rgba(102, 0, 102, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(51, 51, 255, 255));
+						ms->cam->y_offset), ft_get_rgba(153, 0, 153, 255));
 	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(255, 0, 255, 255));
-	else if (((int)ms->coord->sz == 0
-			&& (int)ms->coord->ez > 0) || (int)ms->coord->sz > 0)
+						ms->cam->y_offset), ft_get_rgba(204, 0, 255, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(153, 0, 255, 255));
@@ -69,20 +75,23 @@ void	ft_strahd(t_fdf *ms)
 
 void	ft_phandelver(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0)
+	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(51, 51, 255, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+						ms->cam->y_offset), ft_get_rgba(102, 34, 0, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(51, 51, 255, 255));
+						ms->cam->y_offset), ft_get_rgba(153, 51, 0, 255));
 	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(153, 102, 0, 255));
-	else if (((int)ms->coord->sz == 0
-			&& (int)ms->coord->ez > 0) || (int)ms->coord->sz > 0)
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(38, 115, 38, 255));
@@ -94,11 +103,14 @@ void	ft_phandelver(t_fdf *ms)
 
 void	ft_icewindale(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0)
+	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(51, 51, 255, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+						ms->cam->y_offset), ft_get_rgba(0, 0, 128, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
+		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(51, 51, 255, 255));
@@ -106,11 +118,11 @@ void	ft_icewindale(t_fdf *ms)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
 						ms->cam->y_offset), ft_get_rgba(0, 0, 0, 255));
-	else if (((int)ms->coord->sz == 0
-			&& (int)ms->coord->ez > 0) || (int)ms->coord->sz > 0)
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(0, 102, 255, 255));
+						ms->cam->y_offset), ft_get_rgba(0, 138, 230, 255));
 	if ((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0)
 		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
 						ms->cam->x_offset), (ms->coord->proj_sy + \
