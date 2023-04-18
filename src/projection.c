@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:54:19 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 11:53:55 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:41:56 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ void	ft_top_view(t_fdf *ms)
 	ms->coord->proj_sy = ms->coord->sy;
 	ms->coord->proj_ex = ms->coord->ex;
 	ms->coord->proj_ey = ms->coord->ey;
-}
-
-void	ft_projection_hook(t_fdf *ms, keys_t key)
-{
-	if (key == MLX_KEY_I)
-		ms->cam->projection = isometric;
-	else if (key == MLX_KEY_T)
-		ms->cam->projection = top_view;
-	ft_draw(ms);
 }
 
 void	ft_projection(t_fdf *ms)

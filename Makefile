@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/18 11:03:36 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/18 12:59:16 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,8 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-#CFLAGS	= 	-g -Wall -Wextra -Werror 
-CFLAGS	= 	-fsanitize=address
+CFLAGS	= 	-g -Wall -Wextra -Werror 
+#CFLAGS	= 	-fsanitize=address
 
 # Remove
 RM		=	rm -rf
@@ -76,7 +76,6 @@ SRCS_LIST	=	clean.c \
 				parse_file.c \
 				projection.c \
 				read_map.c \
-				read_map_utils.c \
 				utils.c
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRCS_LIST))
 

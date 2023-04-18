@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 10:43:59 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:57:59 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,25 @@ void	ft_init_matrix(t_fdf *ms)
 	}
 }
 
+/* Allows to store the value of the map's width */
+void	ft_map_width(t_fdf *ms, char *str)
+{
+	int			index;
+
+	index = 0;
+	while (str[index])
+	{
+		if (ft_iswhitespace(str[index]) == 1)
+			index++;
+		else if (ft_iswhitespace(str[index]) == 0)
+		{
+			(ms->width)++;
+			while (ft_iswhitespace(str[index]) == 0)
+				index++;
+		}
+	}
+}
+
 /*
 Checks if the <map.fdf> is empty.
 Gather map infos (width, height, color).
@@ -69,8 +88,6 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 			break ;
 		if (flag == 0)
 			ft_map_width(ms, line);
-		if (ms->color == F)
-			ft_map_is_colored(ms, line);
 		free(line);
 		(ms->height)++;
 		flag = 42;
@@ -101,6 +118,5 @@ void	ft_read_map(t_fdf *ms, char *file)
 		ft_extract_points(ms, line);
 		free(line);
 	}
-	ft_find_z(ms);
 	close (fd);
 }

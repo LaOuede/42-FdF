@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 11:59:40 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 13:03:11 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void	ft_add_menu(t_fdf *ms)
 	ms->menu->menu_img = mlx_texture_to_image(ms->mlx, ms->menu->menu_txt);
 	mlx_delete_texture(ms->menu->menu_txt);
 	mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0);
+	if (!ms->menu->menu_img
+		|| (mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0) == 0))
+		ft_clean_up(ms, KRED"Menu initialization failed\n"KNRM);
 }
 
 void	ft_map_scale(t_fdf *ms)

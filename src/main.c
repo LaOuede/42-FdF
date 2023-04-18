@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/18 12:12:13 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 13:02:09 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	ft_init_mlx(t_fdf *ms, char *file)
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(ms->mlx, ms->image, 0, 0);
 	if (!ms->mlx || !ms->image
-		|| (mlx_image_to_window(ms->mlx, ms->image, WIDTH, HEIGHT) == 0))
+		|| (mlx_image_to_window(ms->mlx, ms->image, 0, 0) == 0))
 		ft_clean_up(ms, KRED"MLX initialization failed\n"KNRM);
 	return (T);
 }

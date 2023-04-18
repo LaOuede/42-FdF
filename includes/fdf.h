@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 12:12:02 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:59:03 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ typedef struct s_fdf
 	double		height;
 	double		z_min;
 	double		z_max;
-	enum flag	color;
 	int			**matrix;
 	int			x;
 	int			y;
@@ -145,7 +144,7 @@ typedef struct s_fdf
 void	ft_add_menu(t_fdf *ms);
 void	ft_avernus(t_fdf *ms);
 void	ft_clean_up(t_fdf *ms, char *err_msg);
-void	ft_colors(t_fdf *ms, keys_t key);
+void	ft_colors_hook(t_fdf *ms, keys_t key);
 void	ft_colorscheme(t_fdf *ms);
 void	ft_dda_algo(t_fdf *ms);
 void	ft_draw(t_fdf *ms);
@@ -153,7 +152,6 @@ void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);
 void	ft_fdf_keys(mlx_key_data_t keydata, void *param);
-void	ft_find_z(t_fdf *ms);
 int		ft_get_rgba(int r, int g, int b, int a);
 void	ft_get_starting_points(t_fdf *ms);
 void	ft_icewindale(t_fdf *ms);
@@ -163,7 +161,8 @@ void	ft_init_matrix(t_fdf *ms);
 bool	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
 void	ft_isometric(t_fdf *ms);
-void	ft_map_is_colored(t_fdf *ms, char *str);
+void	ft_map_erase(t_fdf *ms);
+void	ft_map_scale(t_fdf *ms);
 void	ft_map_width(t_fdf *ms, char *line);
 void	ft_parse_file(t_fdf *ms, char *file);
 void	ft_phandelver(t_fdf *ms);
@@ -172,15 +171,5 @@ void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
-
 /* ----------------UTILS FUNCTIONS----------------- */
-void	ft_print_infos(t_fdf *ms);
-int		ft_valid_char(char c);
-void	ft_draw_cross(t_fdf *ms);
-void	ft_map_erase(t_fdf *ms);
-void	ft_bresenham(t_fdf *ms);
-bool	ft_limits(t_fdf *ms);
-void	ft_find_scale(t_fdf *ms);
-void	ft_map_scale(t_fdf *ms);
-
 #endif
