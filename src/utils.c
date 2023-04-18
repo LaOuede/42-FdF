@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 11:06:47 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:59:40 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 /* Get the starting points on the screen */
 void	ft_get_starting_points(t_fdf *ms)
 {
-/* 		ms->iso->start_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
-		ms->iso->start_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2);
-		ms->iso->end_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
-		ms->iso->end_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2); */
 		ms->coord->proj_sx += WIDTH / 2;
 		ms->coord->proj_sy += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
 		ms->coord->proj_ex += WIDTH / 2;
 		ms->coord->proj_ey += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
-		/* ms->iso->start_x = (WIDTH / 2) - (ms->map->width * ms->cam->scale / 2);
-		ms->iso->start_y = (HEIGHT / 2) - (ms->map->height * ms->cam->scale / 2); */
 }
 
 /* Draw the points of the previous image with the background color */
@@ -39,7 +33,7 @@ void	ft_map_erase(t_fdf *ms)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			mlx_put_pixel(ms->image, x, y, get_rgba(102, 102, 102, 115));
+			mlx_put_pixel(ms->image, x, y, ft_get_rgba(102, 102, 102, 115));
 			y++;
 		}
 		x++;
@@ -67,4 +61,8 @@ void	ft_map_scale(t_fdf *ms)
 		ms->cam->scale = x / 2;
 	else if (x > y)
 		ms->cam->scale = y / 2;
+	ms->coord->sx = ms->coord->sx * ms->cam->scale;
+	ms->coord->sy = ms->coord->sy * ms->cam->scale;
+	ms->coord->ex = ms->coord->ex * ms->cam->scale;
+	ms->coord->ey = ms->coord->ey * ms->cam->scale;
 }

@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 11:08:14 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:12:02 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ typedef struct s_fdf
 	double		z_max;
 	enum flag	color;
 	int			**matrix;
-	double		x_start;
-	double		y_start;
+	int			x;
+	int			y;
 	t_camera	*cam;
 	t_dda		*algo;
 	t_line		*coord;
@@ -154,8 +154,11 @@ void	ft_extract_infos(t_fdf *ms, char *file);
 void	ft_extract_points(t_fdf *ms, char *line);
 void	ft_fdf_keys(mlx_key_data_t keydata, void *param);
 void	ft_find_z(t_fdf *ms);
+int		ft_get_rgba(int r, int g, int b, int a);
 void	ft_get_starting_points(t_fdf *ms);
 void	ft_icewindale(t_fdf *ms);
+void	ft_init_line_x(t_fdf *ms);
+void	ft_init_line_y(t_fdf *ms);
 void	ft_init_matrix(t_fdf *ms);
 bool	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
@@ -169,7 +172,6 @@ void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
-int		get_rgba(int r, int g, int b, int a);
 
 /* ----------------UTILS FUNCTIONS----------------- */
 void	ft_print_infos(t_fdf *ms);

@@ -6,34 +6,31 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 11:01:05 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:11:48 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /* Initialize the structure containing the informations from the <.fdf> file. */
-t_line	*ft_init_line(void)
+void	ft_init_line_x(t_fdf *ms)
 {
-	static t_line	*coord;
+	ms->coord->sx = ms->x;
+	ms->coord->sy = ms->y;
+	ms->coord->sz = ms->matrix[ms->y][ms->x];
+	ms->coord->ex = ms->x + 1;
+	ms->coord->ey = ms->y;
+	ms->coord->ez = ms->matrix[ms->y][ms->x + 1];
+}
 
-	if (!coord)
-	{
-		coord = ft_calloc(sizeof(t_line), 1);
-		coord->sx = 0;
-		coord->sy = 0;
-		coord->sz = 0;
-		coord->ex = 0;
-		coord->ey = 0;
-		coord->ez = 0;
-		coord->proj_sx = 0;
-		coord->proj_sy = 0;
-		coord->proj_sz = 0;
-		coord->proj_ex = 0;
-		coord->proj_ey = 0;
-		coord->proj_ez = 0;
-	}
-	return (coord);
+void	ft_init_line_y(t_fdf *ms)
+{
+	ms->coord->sx = ms->x;
+	ms->coord->sy = ms->y;
+	ms->coord->sz = ms->matrix[ms->y][ms->x];
+	ms->coord->ex = ms->x;
+	ms->coord->ey = ms->y + 1;
+	ms->coord->ez = ms->matrix[ms->y + 1][ms->x];
 }
 
 t_dda	*ft_init_dda(void)
@@ -83,11 +80,11 @@ t_fdf	*ft_init_ms(void)
 		ms->z_min = INT_MAX;
 		ms->color = F;
 		ms->matrix = 0;
-		ms->x_start = 0;
-		ms->y_start = 0;
+		ms->x = 0;
+		ms->y = 0;
 		ms->cam = ft_init_camera();
 		ms->algo = ft_init_dda();
-		ms->coord = ft_init_line();
+		ms->coord = ft_calloc(sizeof(t_line), 1);
 		ms->menu = ft_calloc(sizeof(t_menu), 1);
 	}
 	return (ms);

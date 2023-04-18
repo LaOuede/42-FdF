@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/18 10:26:17 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:12:13 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv)
 	if (ft_init_mlx(ms, argv[1]) == T)
 	{
 		mlx_key_hook(ms->mlx, &ft_fdf_keys, ms);
-		ft_map_scale(ms);
 		ft_draw(ms);
 		ft_add_menu(ms);
 		mlx_loop(ms->mlx);
