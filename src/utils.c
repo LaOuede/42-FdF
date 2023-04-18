@@ -3,76 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/12 18:26:33 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/18 11:06:47 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+/* Get the starting points on the screen */
+void	ft_get_starting_points(t_fdf *ms)
+{
+/* 		ms->iso->start_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
+		ms->iso->start_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2);
+		ms->iso->end_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
+		ms->iso->end_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2); */
+		ms->coord->proj_sx += WIDTH / 2;
+		ms->coord->proj_sy += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
+		ms->coord->proj_ex += WIDTH / 2;
+		ms->coord->proj_ey += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
+		/* ms->iso->start_x = (WIDTH / 2) - (ms->map->width * ms->cam->scale / 2);
+		ms->iso->start_y = (HEIGHT / 2) - (ms->map->height * ms->cam->scale / 2); */
+}
+
+/* Draw the points of the previous image with the background color */
+void	ft_map_erase(t_fdf *ms)
+{
+	double	x;
+	double	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			mlx_put_pixel(ms->image, x, y, get_rgba(102, 102, 102, 115));
+			y++;
+		}
+		x++;
+	}
+}
+
+void	ft_add_menu(t_fdf *ms)
+{
+	ms->menu->menu_txt = mlx_load_png(MENU);
+	ms->menu->menu_img = mlx_texture_to_image(ms->mlx, ms->menu->menu_txt);
+	mlx_delete_texture(ms->menu->menu_txt);
+	mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0);
+}
 
 void	ft_map_scale(t_fdf *ms)
 {
 	int	x;
 	int	y;
 
-	x = (WIDTH - MARGE) / ms->map->width;
-	y = (HEIGHT - MARGE) / ms->map->height;
-	if (x < 20 || y < 20)
+	x = WIDTH / ms->width;
+	y = HEIGHT / ms->height;
+	if (x < 10 || y < 10)
 		ms->cam->scale = 10;
 	else if (x <= y)
-		ms->cam->scale = x / 1.5;
+		ms->cam->scale = x / 2;
 	else if (x > y)
-		ms->cam->scale = y / 1.5;
+		ms->cam->scale = y / 2;
 }
-
-/* bool	ft_limits(t_fdf *ms)
-{
-	int	x = -1;
-	int	y = -1;
-
-	while (++y < (ms->map->height))
-	{
-		while (++x < ms->map->width)
-		{
-			if (ms->map->matrix[y][x] > (WIDTH  - MARGE)
-			|| ms->map->matrix[y][x] > (HEIGHT - MARGE))
-				return (F);
-		}
-	}
-	return (T);
-} */
-
-/* Print map infos*/
-void	ft_print_infos(t_fdf *ms)
-{
-	int	rows;
-	int	columns;
-
-	printf("\n******* MAP infos : ******\n");
-	printf("   -> width  ="KYEL"  %f\n"KNRM, ms->map->width);
-	printf("   -> height ="KYEL"  %f\n"KNRM, ms->map->height);
-	printf("   -> color  ="KYEL"  %d\n"KNRM, ms->map->color);
-	printf("   -> z_max  ="KYEL"  %f\n"KNRM, ms->map->z_max);
-	printf("   -> z_min  ="KYEL"  %f\n"KNRM, ms->map->z_min);
-	printf("   -> scale  ="KYEL"  %d\n"KNRM, ms->cam->scale);
-	printf("\n>>>>>> MAP / ms->map.matrix : <<<<<<\n");
-	rows = -1;
-	while (++rows < ms->map->height)
-	{
-		columns = -1;
-		while (++columns < ms->map->width)
-			printf("%d ", ms->map->matrix[rows][columns]);
-		printf("\n");
-	}
-}
-
-/* int	ft_valid_char(char c)
-{
-	if (c == '-' || c == 'x' || c == 'F' || c == 'f' || c == ',')
-		return (1);
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
-} */

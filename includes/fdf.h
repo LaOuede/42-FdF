@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/13 16:52:59 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:08:14 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <stdbool.h>
 # include <math.h>
 # include <limits.h>
+
+/* ---------------------MENU---------------------- */
+# define MENU "./image/menu.png"
 
 /* --------------------COLORS--------------------- */
 # define KNRM "\x1B[m"
@@ -48,50 +51,78 @@
 # define MARGE 100 */
 
 /* -------------------STRUCTURES------------------- */
+typedef enum scheme
+{
+	icewindale,
+	phandelver,
+	strahd,
+	avernus,
+}	t_scheme;
+
+typedef enum view
+{
+	isometric,
+	top_view,
+}	t_view;
+
 typedef enum flag
 {
 	F,
 	T
 }	t_flag;
 
-typedef struct s_iso
+typedef struct s_menu
 {
-	float	start_x;
-	float	start_y;
-	float	start_z;
-	float	end_x;
-	float	end_y;
-	float	end_z;
-}	t_iso;
+	mlx_texture_t	*menu_txt;
+	mlx_image_t		*menu_img;
+}	t_menu;
+
+/* typedef struct s_iso
+{
+	double	sx;
+	double	sy;
+	double	sz;
+	double	ex;
+	double	ey;
+	double	ez;
+}	t_iso; */
 
 typedef struct s_line
 {
-	float	start_x;
-	float	start_y;
-	float	start_z;
-	float	end_x;
-	float	end_y;
-	float	end_z;
+	double	sx;
+	double	sy;
+	double	sz;
+	double	ex;
+	double	ey;
+	double	ez;
+	double	proj_sx;
+	double	proj_sy;
+	double	proj_sz;
+	double	proj_ex;
+	double	proj_ey;
+	double	proj_ez;
 }	t_line;
 
-typedef struct s_bresenham
+typedef struct s_dda
 {
-	float	x;
-	float	y;
-	float	delta_x;
-	float	delta_y;
-	float	ptp;
-	float	delta_max;
-}	t_bresenham;
+	double	x;
+	double	y;
+	double	delta_x;
+	double	delta_y;
+	double	ptp;
+	double	delta_max;
+}	t_dda;
 
 typedef struct s_camera
 {
-	double	x_offset;
-	double	y_offset;
-	int		scale;
+	double		x_offset;
+	double		y_offset;
+	int			scale;
+	t_view		projection;
+	t_scheme	colors;
 }	t_camera;
 
-typedef struct s_infos
+typedef struct s_fdf
 {
 	double		width;
 	double		height;
@@ -101,23 +132,22 @@ typedef struct s_infos
 	int			**matrix;
 	double		x_start;
 	double		y_start;
-
-}	t_infos;
-
-typedef struct s_fdf
-{
-	t_infos		*map;
 	t_camera	*cam;
-	t_bresenham	*algo;
+	t_dda		*algo;
 	t_line		*coord;
-	t_iso		*iso;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	keys_t		*keys;
+	t_menu		*menu;
 }	t_fdf;
 
 /* --------------------FUNCTIONS------------------- */
+void	ft_add_menu(t_fdf *ms);
+void	ft_avernus(t_fdf *ms);
 void	ft_clean_up(t_fdf *ms, char *err_msg);
+void	ft_colors(t_fdf *ms, keys_t key);
+void	ft_colorscheme(t_fdf *ms);
+void	ft_dda_algo(t_fdf *ms);
 void	ft_draw(t_fdf *ms);
 void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
@@ -125,7 +155,7 @@ void	ft_extract_points(t_fdf *ms, char *line);
 void	ft_fdf_keys(mlx_key_data_t keydata, void *param);
 void	ft_find_z(t_fdf *ms);
 void	ft_get_starting_points(t_fdf *ms);
-t_infos	*ft_init_infos(void);
+void	ft_icewindale(t_fdf *ms);
 void	ft_init_matrix(t_fdf *ms);
 bool	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
@@ -133,7 +163,13 @@ void	ft_isometric(t_fdf *ms);
 void	ft_map_is_colored(t_fdf *ms, char *str);
 void	ft_map_width(t_fdf *ms, char *line);
 void	ft_parse_file(t_fdf *ms, char *file);
+void	ft_phandelver(t_fdf *ms);
+void	ft_projection(t_fdf *ms);
+void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
+void	ft_strahd(t_fdf *ms);
+void	ft_top_view(t_fdf *ms);
+int		get_rgba(int r, int g, int b, int a);
 
 /* ----------------UTILS FUNCTIONS----------------- */
 void	ft_print_infos(t_fdf *ms);

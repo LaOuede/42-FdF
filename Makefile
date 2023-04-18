@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/13 11:25:16 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/18 11:03:36 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,11 +68,12 @@ NAME		=	fdf
 # Dir. and files names
 SRCS_DIR	=	./src/
 SRCS_LIST	=	clean.c \
+				color_scheme.c \
 				draw.c \
-				fdf.c \
 				hook.c \
 				init.c \
-				parse.c \
+				main.c \
+				parse_file.c \
 				projection.c \
 				read_map.c \
 				read_map_utils.c \

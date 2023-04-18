@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:13:16 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/07 12:04:07 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 10:44:18 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	ft_find_z(t_fdf *ms)
 	int	x;
 
 	y = -1;
-	while (++y < ms->map->height)
+	while (++y < ms->height)
 	{
 		x = -1;
-		while (++x < ms->map->width)
+		while (++x < ms->width)
 		{
-			if (ms->map->matrix[y][x] > ms->map->z_max)
-				ms->map->z_max = ms->map->matrix[y][x];
-			if (ms->map->matrix[y][x] < ms->map->z_min)
-				ms->map->z_min = ms->map->matrix[y][x];
+			if (ms->matrix[y][x] > ms->z_max)
+				ms->z_max = ms->matrix[y][x];
+			if (ms->matrix[y][x] < ms->z_min)
+				ms->z_min = ms->matrix[y][x];
 		}
 	}
 }
@@ -45,7 +45,7 @@ void	ft_map_is_colored(t_fdf *ms, char *str)
 	while (str[index])
 	{
 		if (str[index] == 'F' || str[index] == 'f')
-			ms->map->color = T;
+			ms->color = T;
 		index++;
 	}
 }
@@ -62,7 +62,7 @@ void	ft_map_width(t_fdf *ms, char *str)
 			index++;
 		else if (ft_iswhitespace(str[index]) == 0)
 		{
-			(ms->map->width)++;
+			(ms->width)++;
 			while (ft_iswhitespace(str[index]) == 0)
 				index++;
 		}

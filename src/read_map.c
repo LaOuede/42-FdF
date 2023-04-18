@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/12 15:44:25 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/18 10:43:59 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,30 @@ void	ft_extract_points(t_fdf *ms, char *line)
 
 	point = ft_split(line, ' ');
 	column = -1;
-	while (++column < ms->map->width)
-		ms->map->matrix[row][column] = ft_atoi(point[column]);
+	while (++column < ms->width)
+		ms->matrix[row][column] = ft_atoi(point[column]);
 	row++;
 	ft_free_tab_char(point);
+}
+
+/* Initialize the two-dimensioonnal array. */
+void	ft_init_matrix(t_fdf *ms)
+{
+	int	i;
+
+	ms->matrix = ft_calloc(ms->height, sizeof(int *));
+	if (!ms->matrix)
+		exit(EXIT_FAILURE);
+	i = -1;
+	while (++i < ms->height)
+	{
+		ms->matrix[i] = ft_calloc(ms->width, sizeof(int));
+		if (!ms->matrix[i])
+		{
+			ft_free_tab_int(ms->matrix, ms->height);
+			exit(EXIT_FAILURE);
+		}
+	}
 }
 
 /*
@@ -49,10 +69,10 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 			break ;
 		if (flag == 0)
 			ft_map_width(ms, line);
-		if (ms->map->color == F)
+		if (ms->color == F)
 			ft_map_is_colored(ms, line);
 		free(line);
-		(ms->map->height)++;
+		(ms->height)++;
 		flag = 42;
 	}
 	close (fd);

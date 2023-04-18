@@ -6,27 +6,44 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:54:19 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/13 13:09:15 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 10:55:26 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/* void	ft_isometric(t_fdf *ms)
-{
-	ms->iso->start_x = (ms->coord->start_x - ms->coord->start_y) * cos(0.523599);
-	ms->iso->start_y = (ms->coord->start_x - ms->coord->start_y) * sin(0.523599) - ms->coord->start_z;
-	ms->iso->end_x = (ms->coord->end_x - ms->coord->end_y) * cos(0.523599);
-	ms->iso->end_y = (ms->coord->end_x - ms->coord->end_y) * sin(0.523599) - ms->coord->end_z;
-} */
-
 void	ft_isometric(t_fdf *ms)
 {
-	ms->iso->start_x = (ms->coord->start_x - ms->coord->start_y) * cos(0.523599);
-	ms->iso->start_y = (ms->coord->start_x + ms->coord->start_y) * sin(0.523599) - ms->coord->start_z;
-	ms->iso->end_x = (ms->coord->end_x - ms->coord->end_y) * cos(0.523599);
-	ms->iso->end_y = (ms->coord->end_x + ms->coord->end_y) * sin(0.523599) - ms->coord->end_z;
+	ms->coord->proj_sx = (ms->coord->sx - ms->coord->sy) \
+		* cos(0.523599);
+	ms->coord->proj_sy = (ms->coord->sx + ms->coord->sy) \
+		* sin(0.523599) - ms->coord->sz;
+	ms->coord->proj_ex = (ms->coord->ex - ms->coord->ey) * cos(0.523599);
+	ms->coord->proj_ey = (ms->coord->ex + ms->coord->ey) \
+		* sin(0.523599) - ms->coord->ez;
 }
 
-/* x` = (x - y) * cos(angle)
-**			y` = (x + y) * sin(angle) - z */
+void	ft_top_view(t_fdf *ms)
+{
+	ms->coord->proj_sx = ms->coord->sx;
+	ms->coord->proj_sy = ms->coord->sy;
+	ms->coord->proj_ex = ms->coord->ex;
+	ms->coord->proj_ey = ms->coord->ey;
+}
+
+void	ft_projection_hook(t_fdf *ms, keys_t key)
+{
+	if (key == MLX_KEY_I)
+		ms->cam->projection = isometric;
+	else if (key == MLX_KEY_T)
+		ms->cam->projection = top_view;
+	ft_draw(ms);
+}
+
+void	ft_projection(t_fdf *ms)
+{
+	if (ms->cam->projection == isometric)
+		ft_isometric(ms);
+	else if (ms->cam->projection == top_view)
+		ft_top_view(ms);
+}
