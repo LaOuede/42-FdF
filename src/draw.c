@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/18 12:15:42 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:44:06 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	ft_colorscheme(t_fdf *ms)
 {
-	if (ms->cam->colors == icewindale)
+	if (ms->cam->colors == standard)
+		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
+						ms->cam->x_offset), (ms->coord->proj_sy + \
+						ms->cam->y_offset), ft_get_rgba(0, 0, 0, 255));
+	else if (ms->cam->colors == icewindale)
 		ft_icewindale(ms);
 	else if (ms->cam->colors == phandelver)
 		ft_phandelver(ms);

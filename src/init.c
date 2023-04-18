@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:46:06 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:43:11 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_camera	*ft_init_camera(void)
 	if (!cam)
 	{
 		cam = ft_calloc(sizeof(t_camera), 1);
-		cam->colors = icewindale;
+		cam->colors = standard;
 		cam->projection = isometric;
 		cam->x_offset = 0;
 		cam->y_offset = 0;

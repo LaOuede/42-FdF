@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 12:42:13 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:45:24 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_colors_hook(t_fdf *ms, keys_t key)
 {
-	if (key == MLX_KEY_1)
+	if (key == MLX_KEY_SPACE)
+		ms->cam->colors = standard;
+	else if (key == MLX_KEY_1)
 		ms->cam->colors = icewindale;
 	else if (key == MLX_KEY_2)
 		ms->cam->colors = phandelver;
@@ -51,6 +53,7 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_1)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_2)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_3)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_4))
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_4)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_SPACE))
 		ft_colors_hook(ms, keydata.key);
 }
