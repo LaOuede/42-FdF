@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:44:28 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:46:54 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,43 @@ void	ft_map_scale(t_fdf *ms)
 	ms->coord->sy = ms->coord->sy * ms->cam->scale;
 	ms->coord->ex = ms->coord->ex * ms->cam->scale;
 	ms->coord->ey = ms->coord->ey * ms->cam->scale;
+}
+
+
+/*
+Allows to store the value of :
+	- the altitude max point,
+	- the altitude min point.
+*/
+void	ft_find_z(t_fdf *ms)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < ms->map->height)
+	{
+		x = -1;
+		while (++x < ms->map->width)
+		{
+			if (ms->map->matrix[y][x] > ms->map->z_max)
+				ms->map->z_max = ms->map->matrix[y][x];
+			if (ms->map->matrix[y][x] < ms->map->z_min)
+				ms->map->z_min = ms->map->matrix[y][x];
+		}
+	}
+}
+
+/* Checks if the map contains color informations */
+void	ft_map_is_colored(t_fdf *ms, char *str)
+{
+	int			index;
+
+	index = 0;
+	while (str[index])
+	{
+		if (str[index] == 'F' || str[index] == 'f')
+			ms->map->color = T;
+		index++;
+	}
 }

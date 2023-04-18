@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 12:57:59 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:47:36 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ void	ft_read_map(t_fdf *ms, char *file)
 		ft_extract_points(ms, line);
 		free(line);
 	}
+	//ft_find_z(ms);
 	close (fd);
 }
