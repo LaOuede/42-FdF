@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 12:59:03 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:45:58 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,6 @@ typedef struct s_fdf
 {
 	double		width;
 	double		height;
-	double		z_min;
-	double		z_max;
 	int			**matrix;
 	int			x;
 	int			y;

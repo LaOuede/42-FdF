@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:44:37 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:44:28 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 /* Get the starting points on the screen */
 void	ft_get_starting_points(t_fdf *ms)
 {
+	/* 	ms->iso->start_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
+		ms->iso->start_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2);
+		ms->iso->end_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
+		ms->iso->end_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2); */
 	ms->coord->proj_sx += WIDTH / 2;
 	ms->coord->proj_sy += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
 	ms->coord->proj_ex += WIDTH / 2;
 	ms->coord->proj_ey += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
+		/* ms->iso->start_x = (WIDTH / 2) - (ms->map->width * ms->cam->scale / 2);
+		ms->iso->start_y = (HEIGHT / 2) - (ms->map->height * ms->cam->scale / 2); */
 }
 
 /* Draw the points of the previous image with the background color */

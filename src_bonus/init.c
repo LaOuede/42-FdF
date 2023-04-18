@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:46:06 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:54:57 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ t_fdf	*ft_init_ms(void)
 		ms = ft_calloc(sizeof(t_fdf), 1);
 		ms->height = 0;
 		ms->width = 0;
+		ms->z_max = INT_MIN;
+		ms->z_min = INT_MAX;
 		ms->matrix = 0;
 		ms->x = 0;
 		ms->y = 0;
