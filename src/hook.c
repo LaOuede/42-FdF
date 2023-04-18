@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 17:45:24 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/18 17:52:12 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_colors_hook(t_fdf *ms, keys_t key)
 
 void	ft_projection_hook(t_fdf *ms, keys_t key)
 {
-	if (key == MLX_KEY_I)
+	if (key == MLX_KEY_I || key == MLX_KEY_SPACE)
 		ms->cam->projection = isometric;
 	else if (key == MLX_KEY_T)
 		ms->cam->projection = top_view;
@@ -48,6 +48,7 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 		exit(EXIT_SUCCESS);
 	}
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_I)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_SPACE)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_T))
 		ft_projection_hook(ms, keydata.key);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_1)
