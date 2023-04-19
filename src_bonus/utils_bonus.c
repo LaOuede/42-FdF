@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 15:18:46 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:41:47 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ void	ft_map_scale(t_fdf *ms)
 		ms->cam->scale = y / 5;
 	ms->coord->sx *= ms->cam->scale + ms->cam->zoom;
 	ms->coord->sy *= ms->cam->scale + ms->cam->zoom;
+	ms->coord->sz *= (ms->cam->scale + ms->cam->zoom) / ms->cam->scale;
 	ms->coord->ex *= ms->cam->scale + ms->cam->zoom;
 	ms->coord->ey *= ms->cam->scale + ms->cam->zoom;
+	ms->coord->ez *= (ms->cam->scale + ms->cam->zoom) / ms->cam->scale;
 }
 
 

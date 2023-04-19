@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 15:00:32 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:42:55 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_camera	*ft_init_camera(void)
 		cam->projection = isometric;
 		cam->x_offset = 1;
 		cam->y_offset = 1;
-		cam->z_offset = 1;
+		cam->z_offset = 0;
 		cam->zoom = 0;
 		cam->scale = 0;
 	}
