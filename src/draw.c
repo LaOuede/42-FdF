@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/18 17:44:06 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/19 12:37:00 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	ft_colorscheme(t_fdf *ms)
-{
-	if (ms->cam->colors == standard)
-		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
-						ms->cam->x_offset), (ms->coord->proj_sy + \
-						ms->cam->y_offset), ft_get_rgba(0, 0, 0, 255));
-	else if (ms->cam->colors == icewindale)
-		ft_icewindale(ms);
-	else if (ms->cam->colors == phandelver)
-		ft_phandelver(ms);
-	else if (ms->cam->colors == strahd)
-		ft_strahd(ms);
-	else if (ms->cam->colors == avernus)
-		ft_avernus(ms);
-}
 
 void	ft_dda_algo(t_fdf *ms)
 {
@@ -51,6 +35,43 @@ void	ft_dda_algo(t_fdf *ms)
 	}
 }
 
+void	ft_draw_x(t_fdf *ms)
+{
+	ft_init_line_x(ms);
+	ft_map_scale(ms);
+	ft_projection(ms);
+	ft_get_starting_points(ms);
+	ft_dda_algo(ms);
+}
+
+void	ft_draw_y(t_fdf *ms)
+{
+	ft_init_line_y(ms);
+	ft_map_scale(ms);
+	ft_projection(ms);
+	ft_get_starting_points(ms);
+	ft_dda_algo(ms);
+}
+
+/* Draw the points of the previous image with the background color */
+void	ft_map_erase(t_fdf *ms)
+{
+	double	x;
+	double	y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			mlx_put_pixel(ms->image, x, y, ft_get_rgba(102, 102, 102, 115));
+			y++;
+		}
+		x++;
+	}
+}
+
 /* Draw the points of the map */
 void	ft_draw(t_fdf *ms)
 {
@@ -62,21 +83,9 @@ void	ft_draw(t_fdf *ms)
 		while (++ms->x < ms->width)
 		{
 			if (ms->x < ms->width - 1)
-			{
-				ft_init_line_x(ms);
-				ft_map_scale(ms);
-				ft_projection(ms);
-				ft_get_starting_points(ms);
-				ft_dda_algo(ms);
-			}
+				ft_draw_x(ms);
 			if (ms->y < ms->height - 1)
-			{
-				ft_init_line_y(ms);
-				ft_map_scale(ms);
-				ft_projection(ms);
-				ft_get_starting_points(ms);
-				ft_dda_algo(ms);
-			}
+				ft_draw_y(ms);
 		}
 	}
 }

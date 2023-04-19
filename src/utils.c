@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:44:37 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:37:11 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,20 @@ void	ft_get_starting_points(t_fdf *ms)
 	ms->coord->proj_ey += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
 }
 
-/* Draw the points of the previous image with the background color */
-void	ft_map_erase(t_fdf *ms)
+void	ft_colorscheme(t_fdf *ms)
 {
-	double	x;
-	double	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			mlx_put_pixel(ms->image, x, y, ft_get_rgba(102, 102, 102, 115));
-			y++;
-		}
-		x++;
-	}
+	if (ms->cam->colors == standard)
+		mlx_put_pixel(ms->image, (ms->coord->proj_sx + \
+						ms->cam->x_offset), (ms->coord->proj_sy + \
+						ms->cam->y_offset), ft_get_rgba(0, 0, 0, 255));
+	else if (ms->cam->colors == icewindale)
+		ft_icewindale(ms);
+	else if (ms->cam->colors == phandelver)
+		ft_phandelver(ms);
+	else if (ms->cam->colors == strahd)
+		ft_strahd(ms);
+	else if (ms->cam->colors == avernus)
+		ft_avernus(ms);
 }
 
 void	ft_add_menu(t_fdf *ms)

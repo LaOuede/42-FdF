@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 12:54:57 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:00:32 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 /* Initialize the structure containing the informations from the <.fdf> file. */
 void	ft_init_line_x(t_fdf *ms)
@@ -18,9 +18,13 @@ void	ft_init_line_x(t_fdf *ms)
 	ms->coord->sx = ms->x;
 	ms->coord->sy = ms->y;
 	ms->coord->sz = ms->matrix[ms->y][ms->x];
+	if (ms->coord->sz != 0)
+		ms->coord->sz += ms->cam->z_offset;
 	ms->coord->ex = ms->x + 1;
 	ms->coord->ey = ms->y;
 	ms->coord->ez = ms->matrix[ms->y][ms->x + 1];
+	if (ms->coord->ez != 0)
+		ms->coord->ez += ms->cam->z_offset;
 }
 
 void	ft_init_line_y(t_fdf *ms)
@@ -28,9 +32,13 @@ void	ft_init_line_y(t_fdf *ms)
 	ms->coord->sx = ms->x;
 	ms->coord->sy = ms->y;
 	ms->coord->sz = ms->matrix[ms->y][ms->x];
+	if (ms->coord->sz != 0)
+		ms->coord->sz += ms->cam->z_offset;
 	ms->coord->ex = ms->x;
 	ms->coord->ey = ms->y + 1;
 	ms->coord->ez = ms->matrix[ms->y + 1][ms->x];
+	if (ms->coord->ez != 0)
+		ms->coord->ez += ms->cam->z_offset;
 }
 
 t_dda	*ft_init_dda(void)
@@ -59,8 +67,10 @@ t_camera	*ft_init_camera(void)
 		cam = ft_calloc(sizeof(t_camera), 1);
 		cam->colors = icewindale;
 		cam->projection = isometric;
-		cam->x_offset = 0;
-		cam->y_offset = 0;
+		cam->x_offset = 1;
+		cam->y_offset = 1;
+		cam->z_offset = 1;
+		cam->zoom = 0;
 		cam->scale = 0;
 	}
 	return (cam);
@@ -79,6 +89,7 @@ t_fdf	*ft_init_ms(void)
 		ms->z_max = INT_MIN;
 		ms->z_min = INT_MAX;
 		ms->matrix = 0;
+		ms->color = F;
 		ms->x = 0;
 		ms->y = 0;
 		ms->cam = ft_init_camera();

@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/18 15:32:39 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/19 12:30:28 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ RM		=	rm -rf
 
 # Librairies names
 NAME		=	fdf
+NAME_B		=	fdf_bonus
 
 # Dir. and files names
 SRCS_DIR	=	./src/
@@ -83,8 +84,29 @@ OBJS_DIR	=	./obj/
 OBJS_LIST	=	$(patsubst %.c, %.o, $(SRCS_LIST))
 OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 
+# Dir. and files names - BONUS
+SRCS_DIR_B	=	./src_bonus/
+SRCS_LIST_B	=	clean_bonus.c \
+				color_scheme_bonus.c \
+				draw_bonus.c \
+				hook_bonus.c \
+				init_bonus.c \
+				main_bonus.c \
+				modifications_bonus.c \
+				parse_file_bonus.c \
+				projection_bonus.c \
+				read_map_bonus.c \
+				utils_bonus.c
+SRCS_B		=	$(addprefix $(SRCS_DIR_B), $(SRCS_LIST_B))
+
+OBJS_DIR	=	./obj/
+OBJS_LIST_B	=	$(patsubst %.c, %.o, $(SRCS_LIST_B))
+OBJS_B		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST_B))
+
+# Headers
 HEADER_DIR	=	./includes/
-HEADER_LIST	=	fdf.h
+HEADER_LIST	=	fdf.h \
+				fdf_bonus.h
 HEADER	 	=	$(addprefix $(HEADER_DIR), $(HEADER_LIST))
 
 # Libft variables
@@ -111,7 +133,7 @@ USER		=	$(shell whoami)
 # Executable creation
 all: dir $(NAME)
 	@echo $Y"$$BANNER1"$W
-	@echo "				$Z...made by $Ygle-roux$Z$W🐭"
+	@echo "				$Z...made by $Ygle-roux$Z🐭"
 	@echo "					$Z...evaluated by $Y$(USER)\n\n$W"
 
 #Create directory for *.o files
@@ -122,6 +144,12 @@ dir:
 $(NAME): $(MLX42) $(LIBFT) $(PRINTF) $(OBJS)
 	@echo "\n\n$W----------------------- $Zfdf is $Gdone ✅ $W------------------------"
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(PRINTF) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME)
+	@echo "\n-------------- $ZIf help is needed, type $Ymake help $W--------------"
+	@echo "\n>>>>>>>>>>>>>>>>>>>>> $YFILdeFER $Gis ready ✅$W <<<<<<<<<<<<<<<<<<<<"
+
+$(NAME_B): $(MLX42) $(LIBFT) $(PRINTF) $(OBJS_B)
+	@echo "\n\n$W-------------------- $Zfdf_bonus is $Gdone ✅ $W---------------------"
+	@$(CC) $(CFLAGS) $(SRCS_B) $(LIBFT) $(PRINTF) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME_B)
 	@echo "\n-------------- $ZIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>> $YFILdeFER $Gis ready ✅$W <<<<<<<<<<<<<<<<<<<<"
 
@@ -158,6 +186,11 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@printf "\n $GCompiling : $Z$(notdir $<)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+# Create all files .o (object) from files .c (source code)
+$(OBJS_DIR)%.o: $(SRCS_DIR_B)%.c $(HEADER)
+	@printf "\n $GCompiling : $Z$(notdir $<)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 # Remove objects
 clean:
 	@echo "\n\n$W>>>>>>>>>>>>>>>>>>>>>>>>>>> $YCLEANING $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
@@ -172,12 +205,19 @@ fclean: clean
 	@$(RM) $(LIBFT)
 	@$(RM) $(PRINTF)
 #	@$(RM) ./lib
+	@$(RM) $(NAME_B)
 	@echo "\n$W-------- $ZAll exec. and archives successfully $Rdeleted ❌$W--------\n"
 	@echo "$W>>>>>>>>>>>>>>>>>>>>> $ZCleaning is $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<<\n"
 
 # Remove objects and executables and remake
 re: fclean
 	@$(MAKE) all
+
+# Create Bonus files
+bonus: dir $(NAME_B)
+	@echo $Y"$$BANNER1"$W
+	@echo "	$Y-> BONUS! <-$W		$Z...made by $Ygle-roux$W🐭"
+	@echo "					$Z...evaluated by $Y$(USER)\n\n$W"
 
 # Display tools available
 help:
@@ -202,7 +242,7 @@ colors:
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
-	@norminette $(SRCS) $(HEADER) $(LIBFT_DIR) $(PRINTF_DIR) $(SRCS_C_DIR) $(SRCS_S_DIR)
+	@norminette $(SRCS) $(HEADER) $(LIBFT_DIR) $(PRINTF_DIR) $(SRCS_B)
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts

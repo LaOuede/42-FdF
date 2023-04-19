@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 12:37:40 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:18:48 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../MLX42/include/MLX42/MLX42_Input.h"
@@ -25,7 +25,7 @@
 # include <limits.h>
 
 /* ---------------------MENU---------------------- */
-# define MENU "./image/menu.png"
+# define MENU "./image/menu_bonus.png"
 
 /* --------------------COLORS--------------------- */
 # define KNRM "\x1B[m"
@@ -43,17 +43,13 @@
 # define KWHT "\x1B[37m"
 
 /* ----------------WINDOW SETTINGS----------------- */
-# define WIDTH 960
-# define HEIGHT 540
-# define MARGE 25
-/* # define WIDTH 1920
+# define WIDTH 1920
 # define HEIGHT 1080
-# define MARGE 100 */
+# define MARGE 100
 
 /* -------------------STRUCTURES------------------- */
 typedef enum scheme
 {
-	standard,
 	icewindale,
 	phandelver,
 	strahd,
@@ -118,6 +114,8 @@ typedef struct s_camera
 {
 	double		x_offset;
 	double		y_offset;
+	double		z_offset;
+	double		zoom;
 	int			scale;
 	t_view		projection;
 	t_scheme	colors;
@@ -128,8 +126,11 @@ typedef struct s_fdf
 	double		width;
 	double		height;
 	int			**matrix;
+	bool		color;
 	int			x;
 	int			y;
+	int			z_max;
+	int			z_min;
 	t_camera	*cam;
 	t_dda		*algo;
 	t_line		*coord;
@@ -141,6 +142,7 @@ typedef struct s_fdf
 
 /* --------------------FUNCTIONS------------------- */
 void	ft_add_menu(t_fdf *ms);
+void	ft_altitude(t_fdf *ms);
 void	ft_avernus(t_fdf *ms);
 void	ft_clean_up(t_fdf *ms, char *err_msg);
 void	ft_colors_hook(t_fdf *ms, keys_t key);
@@ -163,6 +165,7 @@ void	ft_isometric(t_fdf *ms);
 void	ft_map_erase(t_fdf *ms);
 void	ft_map_scale(t_fdf *ms);
 void	ft_map_width(t_fdf *ms, char *line);
+void	ft_modifications(t_fdf *ms);
 void	ft_parse_file(t_fdf *ms, char *file);
 void	ft_phandelver(t_fdf *ms);
 void	ft_projection(t_fdf *ms);
@@ -170,5 +173,7 @@ void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
+void	ft_translation(t_fdf *ms);
+void	ft_translation_hook(t_fdf *ms, keys_t key);
 /* ----------------UTILS FUNCTIONS----------------- */
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:45:20 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:18:28 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 void	ft_colors_hook(t_fdf *ms, keys_t key)
 {
@@ -25,25 +25,43 @@ void	ft_colors_hook(t_fdf *ms, keys_t key)
 	ft_draw(ms);
 }
 
+void	ft_zoom_hook(t_fdf *ms, keys_t key)
+{
+	if (key == MLX_KEY_MINUS)
+		ms->cam->zoom -= 1;
+	else if (key == MLX_KEY_EQUAL)
+		ms->cam->zoom += 1;
+	ft_draw(ms);
+}
+
+void	ft_z_hook(t_fdf *ms, keys_t key)
+{
+	if (key == MLX_KEY_UP)
+		ms->cam->z_offset += 5;
+	else if (key == MLX_KEY_DOWN)
+		ms->cam->z_offset -= 5;
+	ft_draw(ms);
+}
+
+void	ft_translation_hook(t_fdf *ms, keys_t key)
+{
+	if (key == MLX_KEY_D)
+		ms->cam->x_offset += 25;
+	else if (key == MLX_KEY_A)
+		ms->cam->x_offset -= 25;
+	else if (key == MLX_KEY_W)
+		ms->cam->y_offset -= 25;
+	else if (key == MLX_KEY_S)
+		ms->cam->y_offset += 25;
+	ft_draw(ms);
+}
+
 void	ft_projection_hook(t_fdf *ms, keys_t key)
 {
 	if (key == MLX_KEY_I)
 		ms->cam->projection = isometric;
 	else if (key == MLX_KEY_T)
 		ms->cam->projection = top_view;
-	ft_draw(ms);
-}
-
-void	ft_translation(t_fdf *ms, keys_t key)
-{
-	if (key == MLX_KEY_RIGHT)
-		ms->cam->x_offset += 25;
-	else if (key == MLX_KEY_LEFT)
-		ms->cam->x_offset -= 25;
-	else if (key == MLX_KEY_UP)
-		ms->cam->y_offset -= 25;
-	else if (key == MLX_KEY_DOWN)
-		ms->cam->y_offset += 25;
 	ft_draw(ms);
 }
 
@@ -61,11 +79,17 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_T))
 		ft_projection_hook(ms, keydata.key);
-	if (mlx_is_key_down(ms->mlx, MLX_KEY_RIGHT)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_LEFT)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_UP)
+	if (mlx_is_key_down(ms->mlx, MLX_KEY_D)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_A)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_W)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_S))
+		ft_translation_hook(ms, keydata.key);
+	if (mlx_is_key_down(ms->mlx, MLX_KEY_UP)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_DOWN))
-		ft_translation(ms, keydata.key);
+		ft_z_hook(ms, keydata.key);
+	if (mlx_is_key_down(ms->mlx, MLX_KEY_MINUS)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_EQUAL))
+		ft_zoom_hook(ms, keydata.key);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_1)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_2)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_3)

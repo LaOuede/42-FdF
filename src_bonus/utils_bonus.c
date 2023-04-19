@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 15:46:54 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:18:46 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
+
+void	ft_colorscheme(t_fdf *ms)
+{
+	if (ms->cam->colors == icewindale)
+		ft_icewindale(ms);
+	else if (ms->cam->colors == phandelver)
+		ft_phandelver(ms);
+	else if (ms->cam->colors == strahd)
+		ft_strahd(ms);
+	else if (ms->cam->colors == avernus)
+		ft_avernus(ms);
+}
 
 /* Get the starting points on the screen */
 void	ft_get_starting_points(t_fdf *ms)
@@ -25,25 +37,6 @@ void	ft_get_starting_points(t_fdf *ms)
 	ms->coord->proj_ey += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
 		/* ms->iso->start_x = (WIDTH / 2) - (ms->map->width * ms->cam->scale / 2);
 		ms->iso->start_y = (HEIGHT / 2) - (ms->map->height * ms->cam->scale / 2); */
-}
-
-/* Draw the points of the previous image with the background color */
-void	ft_map_erase(t_fdf *ms)
-{
-	double	x;
-	double	y;
-
-	x = 0;
-	while (x < WIDTH)
-	{
-		y = 0;
-		while (y < HEIGHT)
-		{
-			mlx_put_pixel(ms->image, x, y, ft_get_rgba(102, 102, 102, 115));
-			y++;
-		}
-		x++;
-	}
 }
 
 void	ft_add_menu(t_fdf *ms)
@@ -64,16 +57,16 @@ void	ft_map_scale(t_fdf *ms)
 
 	x = WIDTH / ms->width;
 	y = HEIGHT / ms->height;
-	if (x < 10 || y < 10)
+	if (x < 20 || y < 20)
 		ms->cam->scale = 10;
 	else if (x <= y)
-		ms->cam->scale = x / 2;
+		ms->cam->scale = x / 5;
 	else if (x > y)
-		ms->cam->scale = y / 2;
-	ms->coord->sx = ms->coord->sx * ms->cam->scale;
-	ms->coord->sy = ms->coord->sy * ms->cam->scale;
-	ms->coord->ex = ms->coord->ex * ms->cam->scale;
-	ms->coord->ey = ms->coord->ey * ms->cam->scale;
+		ms->cam->scale = y / 5;
+	ms->coord->sx *= ms->cam->scale + ms->cam->zoom;
+	ms->coord->sy *= ms->cam->scale + ms->cam->zoom;
+	ms->coord->ex *= ms->cam->scale + ms->cam->zoom;
+	ms->coord->ey *= ms->cam->scale + ms->cam->zoom;
 }
 
 
@@ -88,15 +81,15 @@ void	ft_find_z(t_fdf *ms)
 	int	x;
 
 	y = -1;
-	while (++y < ms->map->height)
+	while (++y < ms->height)
 	{
 		x = -1;
-		while (++x < ms->map->width)
+		while (++x < ms->width)
 		{
-			if (ms->map->matrix[y][x] > ms->map->z_max)
-				ms->map->z_max = ms->map->matrix[y][x];
-			if (ms->map->matrix[y][x] < ms->map->z_min)
-				ms->map->z_min = ms->map->matrix[y][x];
+			if (ms->matrix[y][x] > ms->z_max)
+				ms->z_max = ms->matrix[y][x];
+			if (ms->matrix[y][x] < ms->z_min)
+				ms->z_min = ms->matrix[y][x];
 		}
 	}
 }
@@ -110,7 +103,7 @@ void	ft_map_is_colored(t_fdf *ms, char *str)
 	while (str[index])
 	{
 		if (str[index] == 'F' || str[index] == 'f')
-			ms->map->color = T;
+			ms->color = T;
 		index++;
 	}
 }

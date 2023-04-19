@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_scheme.c                                     :+:      :+:    :+:   */
+/*   color_scheme_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:01:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 11:55:33 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:56:05 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/fdf_bonus.h"
 
 int	ft_get_rgba(int r, int g, int b, int a)
 {
