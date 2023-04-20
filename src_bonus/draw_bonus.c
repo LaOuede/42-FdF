@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/19 15:12:34 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:56:29 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_dda_algo(t_fdf *ms)
 void	ft_draw_x(t_fdf *ms)
 {
 	ft_init_line_x(ms);
+	if (ms->cam->theta_x != 0 || ms->cam->theta_y != 0 || ms->cam->theta_z != 0)
+		ft_rotation(ms);
 	ft_map_scale(ms);
 	ft_projection(ms);
 	ft_get_starting_points(ms);
@@ -48,6 +50,8 @@ void	ft_draw_x(t_fdf *ms)
 void	ft_draw_y(t_fdf *ms)
 {
 	ft_init_line_y(ms);
+	if (ms->cam->theta_x != 0 || ms->cam->theta_y != 0 || ms->cam->theta_z != 0)
+		ft_rotation(ms);
 	ft_map_scale(ms);
 	ft_projection(ms);
 	ft_get_starting_points(ms);

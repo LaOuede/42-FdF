@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 15:18:28 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:43:29 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ void	ft_colors_hook(t_fdf *ms, keys_t key)
 	ft_draw(ms);
 }
 
+void	ft_rotation_hook(t_fdf *ms, keys_t key)
+{
+	if (key == MLX_KEY_Z)
+		ms->cam->theta_x += 0.1;
+	else if (key == MLX_KEY_X)
+		ms->cam->theta_x -= 0.1;
+	else if (key == MLX_KEY_C)
+		ms->cam->theta_y += 0.1;
+	else if (key == MLX_KEY_V)
+		ms->cam->theta_y -= 0.1;
+	else if (key == MLX_KEY_B)
+		ms->cam->theta_z += 0.1;
+	else if (key == MLX_KEY_N)
+		ms->cam->theta_z -= 0.1;
+	ft_draw(ms);
+}
+
 void	ft_zoom_hook(t_fdf *ms, keys_t key)
 {
 	if (key == MLX_KEY_MINUS)
@@ -37,9 +54,9 @@ void	ft_zoom_hook(t_fdf *ms, keys_t key)
 void	ft_z_hook(t_fdf *ms, keys_t key)
 {
 	if (key == MLX_KEY_UP)
-		ms->cam->z_offset += 5;
+		ms->cam->z_offset += 0.2;
 	else if (key == MLX_KEY_DOWN)
-		ms->cam->z_offset -= 5;
+		ms->cam->z_offset -= 0.2;
 	ft_draw(ms);
 }
 
@@ -90,6 +107,13 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_MINUS)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_EQUAL))
 		ft_zoom_hook(ms, keydata.key);
+	if (mlx_is_key_down(ms->mlx, MLX_KEY_Z)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_X)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_C)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_V)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_B)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_N))
+		ft_rotation_hook(ms, keydata.key);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_1)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_2)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_3)

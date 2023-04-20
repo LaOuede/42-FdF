@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 15:18:48 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:47:32 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ typedef struct s_camera
 	double		x_offset;
 	double		y_offset;
 	double		z_offset;
+	double		theta_x;
+	double		theta_y;
+	double		theta_z;
 	double		zoom;
 	int			scale;
 	t_view		projection;
@@ -125,7 +128,7 @@ typedef struct s_fdf
 {
 	double		width;
 	double		height;
-	int			**matrix;
+	int		**matrix;
 	bool		color;
 	int			x;
 	int			y;
@@ -142,7 +145,6 @@ typedef struct s_fdf
 
 /* --------------------FUNCTIONS------------------- */
 void	ft_add_menu(t_fdf *ms);
-void	ft_altitude(t_fdf *ms);
 void	ft_avernus(t_fdf *ms);
 void	ft_clean_up(t_fdf *ms, char *err_msg);
 void	ft_colors_hook(t_fdf *ms, keys_t key);
@@ -171,6 +173,7 @@ void	ft_phandelver(t_fdf *ms);
 void	ft_projection(t_fdf *ms);
 void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
+void	ft_rotation(t_fdf *ms);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
 void	ft_translation(t_fdf *ms);
