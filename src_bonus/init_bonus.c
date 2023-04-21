@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/21 10:03:04 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 15:56:12 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_camera	*ft_init_camera(void)
 	{
 		cam = ft_calloc(sizeof(t_camera), 1);
 		cam->colors = icewindale;
-		cam->projection = isometric;
+		cam->projection = isometric_view;
 		cam->x_offset = 1;
 		cam->y_offset = 1;
 		cam->z_offset = 0.5;

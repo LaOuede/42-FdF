@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/21 11:48:24 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 16:30:06 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ typedef enum scheme
 
 typedef enum view
 {
-	isometric,
+	isometric_view,
 	top_view,
-	dontknow,
-	side_view,
+	bottom_view,
+	width_side_view,
+	height_side_view,
 }	t_view;
 
 typedef enum flag
@@ -148,6 +149,7 @@ typedef struct s_fdf
 /* --------------------FUNCTIONS------------------- */
 void	ft_add_menu(t_fdf *ms);
 void	ft_avernus(t_fdf *ms);
+void	ft_bottom_view(t_fdf *ms);
 void	ft_clean_up(t_fdf *ms, char *err_msg);
 void	ft_colors_hook(t_fdf *ms, keys_t key);
 void	ft_colorscheme(t_fdf *ms);
@@ -160,6 +162,7 @@ void	ft_extract_points(t_fdf *ms, char *line);
 void	ft_fdf_keys(mlx_key_data_t keydata, void *param);
 int		ft_get_rgba(int r, int g, int b, int a);
 void	ft_get_starting_points(t_fdf *ms);
+void	ft_height_side_view(t_fdf *ms);
 void	ft_icewindale(t_fdf *ms);
 void	ft_init_line_x(t_fdf *ms);
 void	ft_init_line_y(t_fdf *ms);
@@ -172,15 +175,16 @@ void	ft_map_scale(t_fdf *ms);
 void	ft_map_width(t_fdf *ms, char *line);
 void	ft_modifications(t_fdf *ms);
 void	ft_parse_file(t_fdf *ms, char *file);
+void	ft_perspective_view(t_fdf *ms);
 void	ft_phandelver(t_fdf *ms);
 void	ft_projection(t_fdf *ms);
 void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
 void	ft_rotation(t_fdf *ms);
-void	ft_side_view(t_fdf *ms);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
 void	ft_translation(t_fdf *ms);
 void	ft_translation_hook(t_fdf *ms, keys_t key);
+void	ft_width_side_view(t_fdf *ms);
 /* ----------------UTILS FUNCTIONS----------------- */
 #endif

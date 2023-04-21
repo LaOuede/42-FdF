@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/21 11:48:05 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 16:29:55 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ void	ft_translation_hook(t_fdf *ms, keys_t key)
 void	ft_projection_hook(t_fdf *ms, keys_t key)
 {
 	if (key == MLX_KEY_I)
-		ms->cam->projection = isometric;
+		ms->cam->projection = isometric_view;
 	else if (key == MLX_KEY_T)
 		ms->cam->projection = top_view;
-	else if (key == MLX_KEY_P)
-		ms->cam->projection = dontknow;
+	else if (key == MLX_KEY_Y)
+		ms->cam->projection = bottom_view;
+	else if (key == MLX_KEY_U)
+		ms->cam->projection = height_side_view;
 	else if (key == MLX_KEY_O)
-		ms->cam->projection = side_view;
+		ms->cam->projection = width_side_view;
 	ft_draw(ms);
 }
 
@@ -99,8 +101,10 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 	}
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_T)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_P)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_O))
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_Y)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_U)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_O)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_P))
 		ft_projection_hook(ms, keydata.key);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_D)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_A)
