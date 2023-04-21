@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/20 11:43:29 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:48:05 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	ft_colors_hook(t_fdf *ms, keys_t key)
 void	ft_rotation_hook(t_fdf *ms, keys_t key)
 {
 	if (key == MLX_KEY_Z)
-		ms->cam->theta_x += 0.1;
+		ms->cam->angle_x += 0.1;
 	else if (key == MLX_KEY_X)
-		ms->cam->theta_x -= 0.1;
+		ms->cam->angle_x -= 0.1;
 	else if (key == MLX_KEY_C)
-		ms->cam->theta_y += 0.1;
+		ms->cam->angle_y += 0.1;
 	else if (key == MLX_KEY_V)
-		ms->cam->theta_y -= 0.1;
+		ms->cam->angle_y -= 0.1;
 	else if (key == MLX_KEY_B)
-		ms->cam->theta_z += 0.1;
+		ms->cam->angle_z += 0.1;
 	else if (key == MLX_KEY_N)
-		ms->cam->theta_z -= 0.1;
+		ms->cam->angle_z -= 0.1;
 	ft_draw(ms);
 }
 
@@ -79,6 +79,10 @@ void	ft_projection_hook(t_fdf *ms, keys_t key)
 		ms->cam->projection = isometric;
 	else if (key == MLX_KEY_T)
 		ms->cam->projection = top_view;
+	else if (key == MLX_KEY_P)
+		ms->cam->projection = dontknow;
+	else if (key == MLX_KEY_O)
+		ms->cam->projection = side_view;
 	ft_draw(ms);
 }
 
@@ -94,7 +98,9 @@ void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 		exit(EXIT_SUCCESS);
 	}
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_I)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_T))
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_T)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_P)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_O))
 		ft_projection_hook(ms, keydata.key);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_D)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_A)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/20 13:47:32 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:48:24 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef enum view
 {
 	isometric,
 	top_view,
+	dontknow,
+	side_view,
 }	t_view;
 
 typedef enum flag
@@ -115,9 +117,9 @@ typedef struct s_camera
 	double		x_offset;
 	double		y_offset;
 	double		z_offset;
-	double		theta_x;
-	double		theta_y;
-	double		theta_z;
+	double		angle_x;
+	double		angle_y;
+	double		angle_z;
 	double		zoom;
 	int			scale;
 	t_view		projection;
@@ -128,7 +130,7 @@ typedef struct s_fdf
 {
 	double		width;
 	double		height;
-	int		**matrix;
+	int			**matrix;
 	bool		color;
 	int			x;
 	int			y;
@@ -150,6 +152,7 @@ void	ft_clean_up(t_fdf *ms, char *err_msg);
 void	ft_colors_hook(t_fdf *ms, keys_t key);
 void	ft_colorscheme(t_fdf *ms);
 void	ft_dda_algo(t_fdf *ms);
+void	ft_dontknow(t_fdf *ms);
 void	ft_draw(t_fdf *ms);
 void	ft_error(char *err_msg, int fd);
 void	ft_extract_infos(t_fdf *ms, char *file);
@@ -174,6 +177,7 @@ void	ft_projection(t_fdf *ms);
 void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
 void	ft_rotation(t_fdf *ms);
+void	ft_side_view(t_fdf *ms);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
 void	ft_translation(t_fdf *ms);

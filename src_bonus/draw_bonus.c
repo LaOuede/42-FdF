@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/20 13:56:29 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:26:49 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_dda_algo(t_fdf *ms)
 void	ft_draw_x(t_fdf *ms)
 {
 	ft_init_line_x(ms);
-	if (ms->cam->theta_x != 0 || ms->cam->theta_y != 0 || ms->cam->theta_z != 0)
+	if (ms->cam->angle_x != 0 || ms->cam->angle_y != 0 || ms->cam->angle_z != 0)
 		ft_rotation(ms);
 	ft_map_scale(ms);
 	ft_projection(ms);
@@ -50,7 +50,7 @@ void	ft_draw_x(t_fdf *ms)
 void	ft_draw_y(t_fdf *ms)
 {
 	ft_init_line_y(ms);
-	if (ms->cam->theta_x != 0 || ms->cam->theta_y != 0 || ms->cam->theta_z != 0)
+	if (ms->cam->angle_x != 0 || ms->cam->angle_y != 0 || ms->cam->angle_z != 0)
 		ft_rotation(ms);
 	ft_map_scale(ms);
 	ft_projection(ms);
@@ -72,6 +72,7 @@ void	ft_map_erase(t_fdf *ms)
 		while (y < HEIGHT)
 		{
 			mlx_put_pixel(ms->image, x, y, ft_get_rgba(102, 102, 102, 115));
+			//mlx_put_pixel(ms->image, x, y, ft_get_rgba(0, 0, 0, 115));
 			y++;
 		}
 		x++;

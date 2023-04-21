@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 17:41:47 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 11:28:30 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,10 @@ void	ft_colorscheme(t_fdf *ms)
 /* Get the starting points on the screen */
 void	ft_get_starting_points(t_fdf *ms)
 {
-	/* 	ms->iso->start_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
-		ms->iso->start_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2);
-		ms->iso->end_x += WIDTH / 2 - ((ms->map->width * ms->cam->scale / 2) - (ms->map->height * ms->cam->scale / 2));
-		ms->iso->end_y += HEIGHT / 2 - (ms->map->height * ms->cam->scale / 2); */
 	ms->coord->proj_sx += WIDTH / 2;
-	ms->coord->proj_sy += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
+	ms->coord->proj_sy += HEIGHT / 2;
 	ms->coord->proj_ex += WIDTH / 2;
-	ms->coord->proj_ey += HEIGHT / 2 - (ms->height * ms->cam->scale / 2);
-		/* ms->iso->start_x = (WIDTH / 2) - (ms->map->width * ms->cam->scale / 2);
-		ms->iso->start_y = (HEIGHT / 2) - (ms->map->height * ms->cam->scale / 2); */
+	ms->coord->proj_ey += HEIGHT / 2;
 }
 
 void	ft_add_menu(t_fdf *ms)
@@ -70,7 +64,6 @@ void	ft_map_scale(t_fdf *ms)
 	ms->coord->ey *= ms->cam->scale + ms->cam->zoom;
 	ms->coord->ez *= (ms->cam->scale + ms->cam->zoom) / ms->cam->scale;
 }
-
 
 /*
 Allows to store the value of :
