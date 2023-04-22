@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/21 16:30:06 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 20:25:56 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef enum view
 {
 	isometric_view,
 	top_view,
-	bottom_view,
+	oblique_view,
 	width_side_view,
 	height_side_view,
 }	t_view;

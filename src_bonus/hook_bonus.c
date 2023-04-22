@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/21 16:29:55 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 20:25:26 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_projection_hook(t_fdf *ms, keys_t key)
 	else if (key == MLX_KEY_T)
 		ms->cam->projection = top_view;
 	else if (key == MLX_KEY_Y)
-		ms->cam->projection = bottom_view;
+		ms->cam->projection = oblique_view;
 	else if (key == MLX_KEY_U)
 		ms->cam->projection = height_side_view;
 	else if (key == MLX_KEY_O)

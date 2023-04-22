@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/21 11:26:49 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/21 20:33:06 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	ft_draw_x(t_fdf *ms)
 	ft_projection(ms);
 	ft_get_starting_points(ms);
 	ft_translation(ms);
-	ft_dda_algo(ms);
+	if (ms->cam->zoom >= -19)
+		ft_dda_algo(ms);
 }
 
 void	ft_draw_y(t_fdf *ms)
@@ -56,7 +57,8 @@ void	ft_draw_y(t_fdf *ms)
 	ft_projection(ms);
 	ft_get_starting_points(ms);
 	ft_translation(ms);
-	ft_dda_algo(ms);
+	if (ms->cam->zoom >= -19)
+		ft_dda_algo(ms);
 }
 
 /* Draw the points of the previous image with the background color */
