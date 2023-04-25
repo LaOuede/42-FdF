@@ -6,105 +6,145 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:01:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 11:56:05 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:32:13 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
-int	ft_get_rgba(int r, int g, int b, int a)
+/* In this context, "t" represents the position of the current pixel along the
+line between the two endpoints, as a value between 0 and 1. When t = 0,
+the color of the pixel will be equal to the color of the first endpoint
+ (color1), and when t = 1, the color of the pixel will be equal to the color
+ of the second endpoint (color2). For values of t between 0 and 1, the color
+ of the pixel will be a linear interpolation between color1 and color2,
+ with the weight of the two colors determined by the value of t. */
+void	ft_standard(t_fdf *ms)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	double	p;
+
+	p = ms->algo->pixel / ms->algo->delta_max;
+	if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
+			ft_get_rgba(0, 0, 0, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0) \
+		|| ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0) \
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 0 + p * 255), \
+		(int)((1 - p) * 0 + p * 255), (int)((1 - p) * 0 + p * 255), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 255 + p * 0), ((1 - p) * 255 + p * 0), \
+		(int)((1 - p) * 255 + p * 0), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
+			ft_get_rgba(255, 255, 255, 255));
 }
 
 void	ft_avernus(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(77, 0, 0, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(153, 0, 0, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
+	double	p;
+
+	p = ms->algo->pixel / ms->algo->delta_max;
+	if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
 			ft_get_rgba(230, 0, 0, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0) \
+		|| ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0) \
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 230 + p * 230), \
+		(int)((1 - p) * 0 + p * 230), (int)((1 - p) * 0 + p * 0), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 230 + p * 230), ((1 - p) * 230 + p * 0), \
+		(int)((1 - p) * 0 + p * 0), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0))
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(255, 153, 0, 255));
-	if ((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(255, 255, 0, 255));
+			ft_get_rgba(230, 230, 0, 255));
 }
 
 void	ft_strahd(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(102, 0, 102, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(153, 0, 153, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(204, 0, 255, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(153, 0, 255, 255));
-	if ((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0)
+	double	p;
+
+	p = ms->algo->pixel / ms->algo->delta_max;
+	if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
 			ft_get_rgba(0, 0, 255, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0) \
+		|| ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0) \
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 0 + p * 255), (int)((1 - p) * 0 + p * 0), \
+		(int)((1 - p) * 255 + p * 255), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 255 + p * 0), ((1 - p) * 0 + p * 0), \
+		(int)((1 - p) * 255 + p * 255), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
+			ft_get_rgba(255, 0, 255, 255));
 }
 
 void	ft_phandelver(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
+	double	p;
+
+	p = ms->algo->pixel / ms->algo->delta_max;
+	if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(102, 34, 0, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(153, 51, 0, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(153, 102, 0, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(38, 115, 38, 255));
-	if ((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0)
+			ft_get_rgba(0, 0, 0, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0) \
+		|| ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0) \
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 0 + p * 0), (int)((1 - p) * 0 + p * 255), \
+		(int)((1 - p) * 0 + p * 0), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 0 + p * 0), ((1 - p) * 255 + p * 0), \
+		(int)((1 - p) * 0 + p * 0), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0))
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
 			ft_get_rgba(0, 255, 0, 255));
 }
 
 void	ft_icewindale(t_fdf *ms)
 {
-	if ((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0)
+	double	p;
+
+	p = ms->algo->pixel / ms->algo->delta_max;
+	if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(0, 0, 128, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0)
-		|| ((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
+			ft_get_rgba(0, 0, 255, 255));
+	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0) \
+		|| ((int)ms->coord->sz == 0 && (int)ms->coord->ez < 0) \
+		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez < 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 0 + p * 102), (int)((1 - p) * 0 + p * 255), \
+		(int)((1 - p) * 255 + p * 255), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez == 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez > 0))
+		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy, \
+		ft_get_rgba((int)((1 - p) * 102 + p * 0), ((1 - p) * 255 + p * 0), \
+		(int)((1 - p) * 255 + p * 255), 255));
+	else if (((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0) || \
+		((int)ms->coord->sz < 0 && (int)ms->coord->ez < 0))
 		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(51, 51, 255, 255));
-	else if ((int)ms->coord->sz == 0 && (int)ms->coord->ez == 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(0, 0, 0, 255));
-	else if (((int)ms->coord->sz == 0 && (int)ms->coord->ez > 0)
-		|| ((int)ms->coord->sz > 0 && (int)ms->coord->ez == 0))
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(0, 138, 230, 255));
-	if ((int)ms->coord->sz > 0 && (int)ms->coord->ez > 0)
-		mlx_put_pixel(ms->image, ms->coord->proj_sx, ms->coord->proj_sy,
-			ft_get_rgba(51, 204, 204, 255));
+			ft_get_rgba(102, 255, 255, 255));
 }

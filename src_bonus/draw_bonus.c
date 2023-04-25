@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/21 20:33:06 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/25 14:58:49 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_dda_algo(t_fdf *ms)
 {
-	int	pixel;
-
 	ms->algo->delta_x = ms->coord->proj_ex - ms->coord->proj_sx;
 	ms->algo->delta_y = ms->coord->proj_ey - ms->coord->proj_sy;
 	if (fabs(ms->algo->delta_x) >= fabs(ms->algo->delta_y))
@@ -24,11 +22,12 @@ void	ft_dda_algo(t_fdf *ms)
 		ms->algo->delta_max = fabs(ms->algo->delta_y);
 	ms->algo->delta_x /= ms->algo->delta_max;
 	ms->algo->delta_y /= ms->algo->delta_max;
-	pixel = -1;
-	while (++pixel <= ms->algo->delta_max)
+	ms->algo->pixel = -1;
+	while (++(ms->algo->pixel) <= ms->algo->delta_max)
 	{
-		if (ms->coord->proj_sx > 0 && ms->coord->proj_sy > 0
-			&& ms->coord->proj_sx < WIDTH && ms->coord->proj_sy < HEIGHT)
+		if (ms->coord->proj_sx > MARGE && ms->coord->proj_sy > MARGE
+			&& ms->coord->proj_sx < WIDTH - MENU_WIDTH - MARGE
+			&& ms->coord->proj_sy < HEIGHT - MARGE)
 			ft_colorscheme(ms);
 		ms->coord->proj_sx += ms->algo->delta_x;
 		ms->coord->proj_sy += ms->algo->delta_y;
@@ -74,7 +73,6 @@ void	ft_map_erase(t_fdf *ms)
 		while (y < HEIGHT)
 		{
 			mlx_put_pixel(ms->image, x, y, ft_get_rgba(102, 102, 102, 115));
-			//mlx_put_pixel(ms->image, x, y, ft_get_rgba(0, 0, 0, 115));
 			y++;
 		}
 		x++;

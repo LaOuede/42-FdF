@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/19 12:37:40 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:35:55 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void	ft_phandelver(t_fdf *ms);
 void	ft_projection(t_fdf *ms);
 void	ft_projection_hook(t_fdf *ms, keys_t key);
 void	ft_read_map(t_fdf *ms, char *file);
+void	ft_standard(t_fdf *ms);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
 /* ----------------UTILS FUNCTIONS----------------- */

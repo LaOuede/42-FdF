@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/20 13:51:22 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/25 15:27:35 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,8 @@ export HELP
 
 # Compiler and flags
 CC		=	gcc
-#CFLAGS	= 	-g -Wall -Wextra -Werror 
-CFLAGS	= 	-fsanitize=address
+CFLAGS	= 	-g -Wall -Wextra -Werror 
+#CFLAGS	= 	-fsanitize=address
 
 # Remove
 RM		=	rm -rf
@@ -89,7 +89,8 @@ SRCS_DIR_B	=	./src_bonus/
 SRCS_LIST_B	=	clean_bonus.c \
 				color_scheme_bonus.c \
 				draw_bonus.c \
-				hook_bonus.c \
+				hook_1_bonus.c \
+				hook_2_bonus.c \
 				init_bonus.c \
 				main_bonus.c \
 				modifications_bonus.c \
@@ -231,10 +232,6 @@ pdf:
 # Open a text generator
 text:
 	@open https://www.dummytextgenerator.com/#jump
-
-# Open a character generator
-test:
-	@open https://www.browserling.com/tools/text-repeat
 	
 # Open a color picker
 colors:

@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:25:04 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/20 13:46:18 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:21:28 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_clean_up(t_fdf *ms, char *err_msg)
 		if (ms->mlx)
 			mlx_terminate(ms->mlx);
 		if (ms->matrix)
-			ft_free_tab_int((int**)ms->matrix, (size_t)ms->height);
+			ft_free_tab_int((int **)ms->matrix, (size_t)ms->height);
 		if (ms->cam)
 			free(ms->cam);
 		if (ms->algo)
