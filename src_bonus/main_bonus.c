@@ -6,7 +6,7 @@
 /*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/25 17:43:40 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/25 17:46:20 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Initialize and set the graphic library and the window */
 t_flag	ft_init_mlx(t_fdf *ms, char *file)
 {
-	ms->mlx = mlx_init(WIDTH, HEIGHT, file, false);
+	ms->mlx = mlx_init(WIDTH, HEIGHT, file, F);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(ms->mlx, ms->image, 300, 0);
 	if (!ms->mlx || !ms->image
