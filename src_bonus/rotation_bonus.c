@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 10:50:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 14:53:43 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:06:27 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
+/* This function appears to perform a rotation around the x-axis in 3D space.
+Here's a breakdown of what each line does:
+
+ms->coord->sy = (ms->coord->sy * cos(ms->cam->angle_x)) -
+(ms->coord->sz * sin(ms->cam->angle_x)) / (ms->cam->z_offset * 3);
+This line rotates the y-coordinate of the start point (sx, sy, sz) 
+round the x-axis by an angle specified by ms->cam->angle_x.
+The result is stored in ms->coord->sy.
+The term (ms->coord->sz * sin(ms->cam->angle_x)) / (ms->cam->z_offset * 3)
+is a correction factor that takes into account the distance of the camera
+from the projection plane. */
 void	ft_rotation_x(t_fdf *ms)
 {
 	ms->coord->sy = (ms->coord->sy * cos(ms->cam->angle_x)) - \
