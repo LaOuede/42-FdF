@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 15:14:40 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:39:06 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ void	ft_keys_1(mlx_key_data_t keydata, void *param)
 
 void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
 {
-	t_fdf	*ms;
+	(void) param;
 
-	ms = (t_fdf *)param;
 	ft_keys_1(keydata, param);
 	ft_keys_2(keydata, param);
 }

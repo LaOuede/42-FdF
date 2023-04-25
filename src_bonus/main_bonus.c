@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/25 15:12:15 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:43:40 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_flag	ft_init_mlx(t_fdf *ms, char *file)
 {
 	ms->mlx = mlx_init(WIDTH, HEIGHT, file, false);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(ms->mlx, ms->image, 0, 0);
+	mlx_image_to_window(ms->mlx, ms->image, 300, 0);
 	if (!ms->mlx || !ms->image
-		|| (mlx_image_to_window(ms->mlx, ms->image, 0, 0) == 0))
+		|| (mlx_image_to_window(ms->mlx, ms->image, 300, 0) == 0))
 		ft_clean_up(ms, KRED"MLX initialization failed\n"KNRM);
 	return (T);
 }
