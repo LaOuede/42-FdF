@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 15:14:01 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:38:43 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,4 @@ void	ft_translation(t_fdf *ms);
 void	ft_translation_hook(t_fdf *ms, keys_t key);
 void	ft_width_side_view(t_fdf *ms);
 /* ----------------UTILS FUNCTIONS----------------- */
-void	ft_colors_test(t_fdf *ms);
 #endif
