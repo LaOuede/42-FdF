@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/26 11:41:50 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/26 11:45:36 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,6 @@ SRCS_LIST_B	=	clean_bonus.c \
 				utils_bonus.c
 SRCS_B		=	$(addprefix $(SRCS_DIR_B), $(SRCS_LIST_B))
 
-OBJS_DIR	=	./obj/
 OBJS_LIST_B	=	$(patsubst %.c, %.o, $(SRCS_LIST_B))
 OBJS_B		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST_B))
 
@@ -227,10 +226,6 @@ help:
 pdf:
 	@open https://cdn.intra.42.fr/pdf/pdf/80730/fr.subject.pdf
 
-# Open a text generator
-text:
-	@open https://www.dummytextgenerator.com/#jump
-	
 # Open a color picker
 colors:
 	@open https://www.w3schools.com/colors/colors_picker.asp
