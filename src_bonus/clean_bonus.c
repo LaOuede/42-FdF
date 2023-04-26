@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 08:25:04 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/26 10:14:55 by gle-roux         ###   ########.fr       */
+/*   Created: 2023/03/31 08:25:04 by gle-roux          #+#    #+#             */
+/*   Updated: 2023/04/26 15:13:22 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

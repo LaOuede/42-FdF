@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 09:14:43 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:12:45 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_extract_points(t_fdf *ms, char *line)
 	ft_free_tab_char(point);
 }
 
-/* Initialize the two-dimensioonnal array. */
+/* Initializes the two-dimensioonnal array. */
 void	ft_init_matrix(t_fdf *ms)
 {
 	int	i;
@@ -94,7 +94,7 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 }
 
 /*
-This function
+This function :
 	- reads the map,
 	- extracts informations,
 	- extracts points from the map,

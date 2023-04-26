@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 11:09:33 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:08:04 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
-/* Combines four individual channel bytes into a single integer using
-bit-shifting*/
+/*
+Combines four individual channel bytes into a single integer using
+bit-shifting
+*/
 int	ft_get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-/* Get the starting points on the screen */
+/* Gets the starting coordinates to display on the screen */
 void	ft_get_starting_points(t_fdf *ms)
 {
 	ms->coord->proj_sx += WIDTH / 2 - MENU_WIDTH / 2;
@@ -28,6 +30,7 @@ void	ft_get_starting_points(t_fdf *ms)
 	ms->coord->proj_ey += HEIGHT / 2;
 }
 
+/* Initialize and set the menu on the left side of the window */
 void	ft_add_menu(t_fdf *ms)
 {
 	ms->menu->menu_txt = mlx_load_png(MENU);
@@ -39,6 +42,7 @@ void	ft_add_menu(t_fdf *ms)
 		ft_clean_up(ms, KRED"Menu initialization failed\n"KNRM);
 }
 
+/* Calculates the scaling of the map */
 void	ft_map_scale(t_fdf *ms)
 {
 	int	x;

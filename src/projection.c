@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:54:19 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 11:32:24 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:12:22 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /*
-The isometric projection is a way of representing a three-dimensional object
-on a two-dimensional plane. It is defined by a specific angle of 30 degrees
-(0.523599 radians).
+Isometric projection is a way of representing a 3D object on a 2D plane.
+It is defined by a specific angle of 30 degrees (0.523599 radians).
 
 Formulas:
 proj_sx = (sx - sy) * cos(0.523599)
@@ -23,8 +22,7 @@ proj_sy = (sx + sy) * sin(0.523599) - sz
 proj_ex = (ex - ey) * cos(0.523599)
 proj_ey = (ex + ey) * sin(0.523599) - ez
 
-Resulting values are the coordinates of the projected points on the
-two-dimensional plane.
+Resulting values are the coordinates of the projected points on the 2D plane.
 
 This function converts the coordinates of a line
 in three-dimensional space to their corresponding isometric projection

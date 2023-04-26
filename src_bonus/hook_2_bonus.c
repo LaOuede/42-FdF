@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:03:39 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 10:21:51 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:29:40 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_colors_hook(t_fdf *ms, keys_t key)
 		ms->cam->colors = strahd;
 	else if (key == MLX_KEY_4)
 		ms->cam->colors = avernus;
+	else if (key == MLX_KEY_R)
+		ms->cam->colors = rainbow;
 	ft_draw(ms);
 }
 
@@ -94,7 +96,8 @@ void	ft_keys_2(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_1)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_2)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_3)
-		|| mlx_is_key_down(ms->mlx, MLX_KEY_4))
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_4)
+		|| mlx_is_key_down(ms->mlx, MLX_KEY_R))
 		ft_colors_hook(ms, keydata.key);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_SPACE))
 		ft_reset_hook(ms, keydata.key);

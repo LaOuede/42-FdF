@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/26 11:26:48 by gle-roux         ###   ########.fr       */
+/*   Created: 2023/03/31 08:15:28 by gle-roux          #+#    #+#             */
+/*   Updated: 2023/04/26 16:34:19 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ int	main(int argc, char **argv)
 		ft_add_menu(ms);
 		mlx_loop(ms->mlx);
 	}
-	ft_clean_up(ms, 0);
-	exit(EXIT_SUCCESS);
+	ft_clean_up(ms, NULL);
 }

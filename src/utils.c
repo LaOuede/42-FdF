@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 10:08:57 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:12:54 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	ft_colorscheme(t_fdf *ms)
 		ft_avernus(ms);
 }
 
-/* Initialize and set the menu on the left side of the window */
+/* Initializes and sets the menu on the left side of the window */
 void	ft_add_menu(t_fdf *ms)
 {
 	ms->menu->menu_txt = mlx_load_png(MENU);
 	ms->menu->menu_img = mlx_texture_to_image(ms->mlx, ms->menu->menu_txt);
 	mlx_delete_texture(ms->menu->menu_txt);
 	mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0);
-	if (!ms->menu->menu_img || !ms->menu->menu_txt
+	if (!ms->menu->menu_img
 		|| (mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0) == 0))
 		ft_clean_up(ms, KRED"Menu initialization failed\n"KNRM);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modifications_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 12:24:53 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 11:25:44 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:17:10 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_colorscheme(t_fdf *ms)
 {
 	if (ms->cam->colors == standard)
 		ft_standard(ms);
-	if (ms->cam->colors == icewindale)
+	else if (ms->cam->colors == icewindale)
 		ft_icewindale(ms);
 	else if (ms->cam->colors == phandelver)
 		ft_phandelver(ms);
@@ -24,6 +24,8 @@ void	ft_colorscheme(t_fdf *ms)
 		ft_strahd(ms);
 	else if (ms->cam->colors == avernus)
 		ft_avernus(ms);
+	else if (ms->cam->colors == rainbow)
+		ft_secret_colors(ms);
 }
 
 void	ft_translation(t_fdf *ms)

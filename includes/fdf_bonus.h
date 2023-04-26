@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 11:35:47 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:17:28 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "../ft_printf/includes/ft_printf.h"
 # include <fcntl.h> // O_RDONLY
 # include <stdio.h> // open
-# include <stdlib.h>
-# include <stdbool.h>
 # include <math.h>
 # include <limits.h>
 
@@ -37,7 +35,7 @@
 # define PI 3.14159265358979323846
 
 /* ----------------------MENU---------------------- */
-# define MENU "./image/menu_bonus.png"
+# define MENU "./images/menu_bonus.png"
 
 /* -------------------STRUCTURES------------------- */
 typedef enum scheme
@@ -47,6 +45,7 @@ typedef enum scheme
 	phandelver,
 	strahd,
 	avernus,
+	rainbow,
 }	t_scheme;
 
 typedef enum view
@@ -84,6 +83,7 @@ typedef struct s_line
 	double	proj_ex;
 	double	proj_ey;
 	double	proj_ez;
+	double	color;
 }	t_line;
 
 typedef struct s_dda
@@ -115,6 +115,7 @@ typedef struct s_fdf
 {
 	int			x;
 	int			y;
+	int			z_max;
 	double		height;
 	double		width;
 	int			**matrix;
@@ -128,12 +129,12 @@ typedef struct s_fdf
 }	t_fdf;
 
 /* -------------PARSING & INITIALIZING------------- */
-void	ft_parse_file(t_fdf *ms, char *file);
 void	ft_init_line_x(t_fdf *ms);
 void	ft_init_line_y(t_fdf *ms);
 void	ft_init_matrix(t_fdf *ms);
 t_flag	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
+void	ft_parse_file(t_fdf *ms, char *file);
 
 /* ------------------CLEANING UP------------------- */
 void	ft_clean_up(t_fdf *ms, char *err_msg);
@@ -152,12 +153,12 @@ void	ft_keys_1(mlx_key_data_t keydata, void *param);
 void	ft_keys_2(mlx_key_data_t keydata, void *param);
 void	ft_projection(t_fdf *ms);
 void	ft_projection_hook(t_fdf *ms, keys_t key);
+void	ft_reset_hook(t_fdf *ms, keys_t key);
 void	ft_rotation(t_fdf *ms);
-void	ft_rotation_x(t_fdf *ms);
-void	ft_rotation_y(t_fdf *ms);
-void	ft_rotation_z(t_fdf *ms);
+void	ft_rotation_hook(t_fdf *ms, keys_t key);
 void	ft_translation(t_fdf *ms);
 void	ft_translation_hook(t_fdf *ms, keys_t key);
+void	ft_z_hook(t_fdf *ms, keys_t key);
 
 /* --------------------DRAWING--------------------- */
 void	ft_colorscheme(t_fdf *ms);
@@ -180,9 +181,16 @@ void	ft_icewindale(t_fdf *ms);
 void	ft_isometric_view(t_fdf *ms);
 void	ft_oblique_view(t_fdf *ms);
 void	ft_phandelver(t_fdf *ms);
+void	ft_rotation_x(t_fdf *ms);
+void	ft_rotation_y(t_fdf *ms);
+void	ft_rotation_z(t_fdf *ms);
+void	ft_secret_colors(t_fdf *ms);
+void	ft_secret_color_neg(t_fdf *ms, double z_factor);
+void	ft_secret_color_pos(t_fdf *ms, double z_factor);
 void	ft_standard(t_fdf *ms);
 void	ft_strahd(t_fdf *ms);
 void	ft_top_view(t_fdf *ms);
 void	ft_width_side_view(t_fdf *ms);
+void	ft_z_max(t_fdf *ms);
 
 #endif

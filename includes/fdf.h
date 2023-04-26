@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:10:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 11:32:10 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:45:38 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 # include "../ft_printf/includes/ft_printf.h"
 # include <fcntl.h> // O_RDONLY
 # include <stdio.h> // open
-# include <stdlib.h>
-# include <stdbool.h>
 # include <math.h>
 # include <limits.h>
 
-/* --------------------COLORS--------------------- */
+/* ---------------------COLORS--------------------- */
 # define KNRM "\x1B[m"
 # define KRED "\x1B[31m"
 # define KYEL "\x1B[33m"
@@ -33,8 +31,8 @@
 # define WIDTH 960
 # define HEIGHT 540
 
-/* ---------------------MENU---------------------- */
-# define MENU "./image/menu.png"
+/* ----------------------MENU---------------------- */
+# define MENU "./images/menu.png"
 
 /* -------------------STRUCTURES------------------- */
 typedef enum scheme
@@ -117,12 +115,12 @@ typedef struct s_fdf
 }	t_fdf;
 
 /* -------------PARSING & INITIALIZING------------- */
-void	ft_parse_file(t_fdf *ms, char *file);
 void	ft_init_line_x(t_fdf *ms);
 void	ft_init_line_y(t_fdf *ms);
 void	ft_init_matrix(t_fdf *ms);
 t_flag	ft_init_mlx(t_fdf *ms, char *file);
 t_fdf	*ft_init_ms(void);
+void	ft_parse_file(t_fdf *ms, char *file);
 
 /* ------------------CLEANING UP------------------- */
 void	ft_clean_up(t_fdf *ms, char *err_msg);

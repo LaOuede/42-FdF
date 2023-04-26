@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 10:25:10 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:36:59 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_fdf	*ft_init_ms(void)
 		ms = ft_calloc(sizeof(t_fdf), 1);
 		ms->x = 0;
 		ms->y = 0;
+		ms->z_max = INT_MIN;
 		ms->height = 0;
 		ms->width = 0;
 		ms->matrix = 0;

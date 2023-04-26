@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/26 10:16:11 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:38:27 by gwenolalero      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ void	ft_read_map(t_fdf *ms, char *file)
 		ft_extract_points(ms, line);
 		free(line);
 	}
+	ft_z_max(ms);
 	close (fd);
 }

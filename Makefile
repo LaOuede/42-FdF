@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
+#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/26 11:45:36 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/26 16:14:52 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,14 @@ ERASE_LINE	=	\033[2K\r
 define HELP
 $Z---------------------------------------------------------------
 $YTools available$Z
+make bres 		$Y->$Z Open Bresenham algo informations
+make color 		$Y->$Z Open color picker
+make dda 		$Y->$Z Open DDA algo informations
 make help		$Y->$Z Display tools available
+make iso 		$Y->$Z Open isometric projection informations
 make norm		$Y->$Z Run Norminette
 make pdf 		$Y->$Z Open PDF subject
+make rot 		$Y->$Z Open rotation informations
 ---------------------------------------------------------------
 endef
 export HELP
@@ -87,6 +92,7 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 SRCS_DIR_B	=	./src_bonus/
 SRCS_LIST_B	=	clean_bonus.c \
 				color_scheme_bonus.c \
+				colors_bonus.c \
 				draw_bonus.c \
 				hook_1_bonus.c \
 				hook_2_bonus.c \
@@ -141,7 +147,7 @@ dir:
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(PRINTF) $(OBJS)
-	@echo "$(ERASE_LINE)$W\n----------------------- $Zfdf is $Gdone ✅ $W------------------------"
+	@echo "$(ERASE_LINE)$W\n------------------------ $Zfdf is $Gdone ✅ $W-----------------------"
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(PRINTF) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME)
 	@echo "\n-------------- $ZIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>> $YFILdeFER $Gis ready ✅$W <<<<<<<<<<<<<<<<<<<<"
@@ -172,7 +178,7 @@ $(MLX42):
 	@if [ ! -f "lib/MLX42/build/libmlx42.a" ]; then \
 		cmake MLX42 -B $(MLX42_DIR) &> /dev/null && make -C $(MLX42_DIR) -j4; \
 	fi
-	@echo "\n$W---------------------- $Zmlx42 is $Gdone ✅ $W-----------------------\n"
+	@echo "\n$W----------------------- $Zmlx42 is $Gdone ✅ $W----------------------\n"
 	
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -196,7 +202,7 @@ clean:
 	@$(RM) $(OBJS_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(PRINTF_DIR) clean
-	@echo "$W------------------- $Z$(NAME): $(OBJS_DIR) was $Rdeleted ❌$W-----------------"
+	@echo "$W------------------- $Z$(NAME) : $(OBJS_DIR) was $Rdeleted ❌$W----------------"
 
 # Remove executables
 fclean: clean
@@ -227,21 +233,22 @@ pdf:
 	@open https://cdn.intra.42.fr/pdf/pdf/80730/fr.subject.pdf
 
 # Open a color picker
-colors:
+color:
 	@open https://www.w3schools.com/colors/colors_picker.asp
 
-eval:
-	@open https://github.com/Binary-Hackers/42_Corrections/blob/master/00_Projects/03_Graphic/fdf/00.pdf
-
+# Open isometric projection informations
 iso:
 	@open https://en.wikipedia.org/wiki/Isometric_projection
 
+# Open rotation informations
 rot:
 	@open https://fr.wikipedia.org/wiki/Rotation_vectorielle
 
+# Open Bresenham algo informations
 bres:
 	@open https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 
+# Open DDA algo informations
 dda:
 	@open https://www.thecrazyprogrammer.com/2017/01/dda-line-drawing-algorithm-c-c.html
 
@@ -252,4 +259,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf norm colors eval iso rot bres dda
+.PHONY: all dir clean fclean re bonus help pdf color iso rot bres dda norm
