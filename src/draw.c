@@ -6,16 +6,26 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:34:37 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/19 12:37:00 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:17:50 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/*
+- DDA (Digital Differential Analyzer) algorithm is used for line drawing 
+in a 2D space.
+- The algorithm works by taking two points in the 2D space, and then computing
+the slope between them to determine the change in the x and y coordinates
+needed to draw a straight line between them.
+- delta_max is the maximum distance between the start and end points
+- delta_x /= delta_max and delta_y /= delta_max will be used to increment the x 
+and y coordinates in each step of the algorithm.
+- checks if the current pixel being drawn is within the boundaries of the window.
+- calls ft_colorscheme(ms) to set the color of the pixel.
+*/
 void	ft_dda_algo(t_fdf *ms)
 {
-	int	pixel;
-
 	ms->algo->delta_x = ms->coord->proj_ex - ms->coord->proj_sx;
 	ms->algo->delta_y = ms->coord->proj_ey - ms->coord->proj_sy;
 	if (fabs(ms->algo->delta_x) >= fabs(ms->algo->delta_y))
@@ -24,8 +34,8 @@ void	ft_dda_algo(t_fdf *ms)
 		ms->algo->delta_max = fabs(ms->algo->delta_y);
 	ms->algo->delta_x /= ms->algo->delta_max;
 	ms->algo->delta_y /= ms->algo->delta_max;
-	pixel = -1;
-	while (++pixel <= ms->algo->delta_max)
+	ms->algo->pixel = -1;
+	while (++ms->algo->pixel <= ms->algo->delta_max)
 	{
 		if (ms->coord->proj_sx > 0 && ms->coord->proj_sy > 0
 			&& ms->coord->proj_sx < WIDTH && ms->coord->proj_sy < HEIGHT)
@@ -35,18 +45,18 @@ void	ft_dda_algo(t_fdf *ms)
 	}
 }
 
-void	ft_draw_x(t_fdf *ms)
+void	ft_draw_y(t_fdf *ms)
 {
-	ft_init_line_x(ms);
+	ft_init_line_y(ms);
 	ft_map_scale(ms);
 	ft_projection(ms);
 	ft_get_starting_points(ms);
 	ft_dda_algo(ms);
 }
 
-void	ft_draw_y(t_fdf *ms)
+void	ft_draw_x(t_fdf *ms)
 {
-	ft_init_line_y(ms);
+	ft_init_line_x(ms);
 	ft_map_scale(ms);
 	ft_projection(ms);
 	ft_get_starting_points(ms);

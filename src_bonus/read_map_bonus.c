@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 12:33:18 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:16:11 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* Extracts points from the map and store them in a two-dimensionnal array */
 void	ft_extract_points(t_fdf *ms, char *line)
 {
-	int				column;
-	static int		row = 0;
-	char			**point;
+	int			column;
+	char		**point;
+	static int	row = 0;
 
 	point = ft_split(line, ' ');
 	column = -1;
@@ -50,7 +50,7 @@ void	ft_init_matrix(t_fdf *ms)
 /* Allows to store the value of the map's width */
 void	ft_map_width(t_fdf *ms, char *str)
 {
-	int			index;
+	int	index;
 
 	index = 0;
 	while (str[index])
@@ -59,7 +59,7 @@ void	ft_map_width(t_fdf *ms, char *str)
 			index++;
 		else if (ft_iswhitespace(str[index]) == 0)
 		{
-			(ms->width)++;
+			ms->width++;
 			while (ft_iswhitespace(str[index]) == 0)
 				index++;
 		}
@@ -83,7 +83,8 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 		line = get_next_line(fd);
 		if (line == NULL && flag == 0)
 			ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
-				KYEL"	-> File is empty / Map doesn't exist <-\n"KNRM);
+				KYEL"	-> File is empty / Map doesn't exist / "KNRM
+				KYEL"Trying to open a directory ? <-\n"KNRM);
 		if (line == NULL)
 			break ;
 		if (flag == 0)

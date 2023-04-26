@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:25:04 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/18 15:30:37 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 09:34:04 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ void	ft_clean_up(t_fdf *ms, char *err_msg)
 	}
 	if (err_msg)
 		ft_error(err_msg, 2);
+	if (!err_msg)
+		exit(EXIT_SUCCESS);
 }

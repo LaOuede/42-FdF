@@ -6,7 +6,7 @@
 #    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/25 15:38:14 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/04/26 11:41:50 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,6 @@ SRCS_LIST	=	clean.c \
 				hook.c \
 				init.c \
 				main.c \
-				parse_file.c \
 				projection.c \
 				read_map.c \
 				utils.c
@@ -94,7 +93,6 @@ SRCS_LIST_B	=	clean_bonus.c \
 				init_bonus.c \
 				main_bonus.c \
 				modifications_bonus.c \
-				parse_file_bonus.c \
 				projection_bonus.c \
 				read_map_bonus.c \
 				rotation_bonus.c \
@@ -144,13 +142,13 @@ dir:
 
 # Compilation
 $(NAME): $(MLX42) $(LIBFT) $(PRINTF) $(OBJS)
-	@echo "\n\n$W----------------------- $Zfdf is $Gdone ✅ $W------------------------"
+	@echo "$(ERASE_LINE)$W\n----------------------- $Zfdf is $Gdone ✅ $W------------------------"
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) $(PRINTF) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME)
 	@echo "\n-------------- $ZIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>> $YFILdeFER $Gis ready ✅$W <<<<<<<<<<<<<<<<<<<<"
 
 $(NAME_B): $(MLX42) $(LIBFT) $(PRINTF) $(OBJS_B)
-	@echo "\n\n$W-------------------- $Zfdf_bonus is $Gdone ✅ $W---------------------"
+	@echo "$(ERASE_LINE)$W\n-------------------- $Zfdf_bonus is $Gdone ✅ $W---------------------"
 	@$(CC) $(CFLAGS) $(SRCS_B) $(LIBFT) $(PRINTF) $(MLX42) $(OPEN_GL) $(GLFW) -o $(NAME_B)
 	@echo "\n-------------- $ZIf help is needed, type $Ymake help $W--------------"
 	@echo "\n>>>>>>>>>>>>>>>>>>>>> $YFILdeFER $Gis ready ✅$W <<<<<<<<<<<<<<<<<<<<"
@@ -185,12 +183,12 @@ $(PRINTF):
 
 # Create all files .o (object) from files .c (source code)
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
-	@printf "\n $GCompiling : $Z$(notdir $<)"
+	@printf "$(ERASE_LINE) $GCompiling : $Z$(notdir $<)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Create all files .o (object) from files .c (source code)
 $(OBJS_DIR)%.o: $(SRCS_DIR_B)%.c $(HEADER)
-	@printf "\n $GCompiling : $Z$(notdir $<)"
+	@printf "$(ERASE_LINE) $GCompiling : $Z$(notdir $<)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Remove objects
@@ -206,7 +204,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT)
 	@$(RM) $(PRINTF)
-#	@$(RM) ./lib
+	@$(RM) ./lib
 	@$(RM) $(NAME_B)
 	@echo "\n$W-------- $ZAll exec. and archives successfully $Rdeleted ❌$W--------\n"
 	@echo "$W>>>>>>>>>>>>>>>>>>>>> $ZCleaning is $Gdone ✅ $W<<<<<<<<<<<<<<<<<<<<<\n"
@@ -237,6 +235,21 @@ text:
 colors:
 	@open https://www.w3schools.com/colors/colors_picker.asp
 
+eval:
+	@open https://github.com/Binary-Hackers/42_Corrections/blob/master/00_Projects/03_Graphic/fdf/00.pdf
+
+iso:
+	@open https://en.wikipedia.org/wiki/Isometric_projection
+
+rot:
+	@open https://fr.wikipedia.org/wiki/Rotation_vectorielle
+
+bres:
+	@open https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+
+dda:
+	@open https://www.thecrazyprogrammer.com/2017/01/dda-line-drawing-algorithm-c-c.html
+
 # Run norminette
 norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE $W<<<<<<<<<<<<<<<<<<<<<<<<<<$Z\n"
@@ -244,4 +257,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re help pdf norm colors
+.PHONY: all dir clean fclean re help pdf norm colors eval iso rot bres dda

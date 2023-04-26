@@ -3,44 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   color_scheme_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:01:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 17:58:33 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/26 11:24:52 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
 
-/* In this context, "t" represents the position of the current pixel along the
-line between the two endpoints, as a value between 0 and 1. When t = 0,
-the color of the pixel will be equal to the color of the first endpoint
- (color1), and when t = 1, the color of the pixel will be equal to the color
- of the second endpoint (color2). For values of t between 0 and 1, the color
- of the pixel will be a linear interpolation between color1 and color2,
- with the weight of the two colors determined by the value of t. */
-
-/* When (1 - p) * 0 + p * 255 is used to set the color 
- component value of a pixel, it is taking into account two factors:
- p and (1 - p).
-
-p is a value between 0 and 1 that is calculated based on the position of the
+/*
+- p represents the position of the current pixel in the line.
+- When p = 0, the color of the pixel will be equal to the color of sx.
+- When p = 1, the color of the pixel will be equal to the color of ex.
+- If 0 < p < 1, the color of the pixel will be a linear interpolation between 
+the two colors. 
+- The part of the two colors is determined by the value of p.
+- p is a value between 0 and 1 that is calculated based on the position of the
 pixel and other factors. p is a measure of the distance between neighboring
 points in a 3D model, where a larger value of p means a larger difference
 in height between two neighboring points.
-
-(1 - p) is just the opposite of p. So when p is close to 0, (1 - p) is close
-to 1, and when p is close to 1, (1 - p) is close to 0.
-
-By using both p and (1 - p) in the color calculation, we create a smooth
-transition in the color component value based on the distance from
-the maximum value of p.
-
-This smooth transition helps to visualize the height and depth of the 3D
-model in a more intuitive way. If we used only p to set the color component 
-alue, we would not be taking into account the distance from the maximum
-value of p. The result would be a less intuitive representation
-of the 3D model. */
+- The color component (R, G, B) value is based on the distance from the maximum
+value of p.
+*/
 void	ft_standard(t_fdf *ms)
 {
 	double	p;

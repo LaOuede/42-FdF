@@ -6,16 +6,16 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/18 13:02:09 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 09:17:33 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /* Initialize and set the graphic library and the window */
-bool	ft_init_mlx(t_fdf *ms, char *file)
+t_flag	ft_init_mlx(t_fdf *ms, char *file)
 {
-	ms->mlx = mlx_init(WIDTH, HEIGHT, file, false);
+	ms->mlx = mlx_init(WIDTH, HEIGHT, file, F);
 	ms->image = mlx_new_image(ms->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(ms->mlx, ms->image, 0, 0);
 	if (!ms->mlx || !ms->image
@@ -24,13 +24,40 @@ bool	ft_init_mlx(t_fdf *ms, char *file)
 	return (T);
 }
 
+/*
+Checks :
+	- if the <map.fdf> is valid / exist,
+	- if the extension is .fdf,
+	- if .fdf is a file and not a directory,
+	- if the file can be opened.
+*/
+void	ft_parse_file(t_fdf *ms, char *file)
+{
+	int		fd;
+	char	*check_file;
+
+	check_file = NULL;
+	check_file = ft_strrchr(file, '.');
+	if (!check_file)
+		ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File is invalid <-\n"KNRM);
+	if (ft_strcmp(check_file, ".fdf") != 0)
+		ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File has an invalid extension <-\n"KNRM);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File can't be opened OR File doesn't exist <-\n"KNRM);
+	close(fd);
+}
+
 int	main(int argc, char **argv)
 {
 	t_fdf	*ms;
 
 	if (argc != 2)
 		ft_clean_up(0, "Usage : ./fdf <map.fdf>\n"
-			KYEL"	-> An argument is needed <-\n"KNRM);
+			KYEL"	-> One argument is needed <-\n"KNRM);
 	ms = ft_init_ms();
 	ft_parse_file(ms, argv[1]);
 	ft_read_map(ms, argv[1]);

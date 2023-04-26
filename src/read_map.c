@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:52:07 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 12:57:59 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 09:14:43 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 /* Extracts points from the map and store them in a two-dimensionnal array */
 void	ft_extract_points(t_fdf *ms, char *line)
 {
-	int				column;
-	static int		row = 0;
-	char			**point;
+	int			column;
+	char		**point;
+	static int	row = 0;
 
 	point = ft_split(line, ' ');
 	column = -1;
@@ -34,23 +34,20 @@ void	ft_init_matrix(t_fdf *ms)
 
 	ms->matrix = ft_calloc(ms->height, sizeof(int *));
 	if (!ms->matrix)
-		exit(EXIT_FAILURE);
+		ft_clean_up(ms, KYEL"-> Failed to init the matrix <-"KNRM);
 	i = -1;
 	while (++i < ms->height)
 	{
 		ms->matrix[i] = ft_calloc(ms->width, sizeof(int));
 		if (!ms->matrix[i])
-		{
-			ft_free_tab_int(ms->matrix, ms->height);
-			exit(EXIT_FAILURE);
-		}
+			ft_clean_up(ms, KYEL"-> Failed to init the matrix <-"KNRM);
 	}
 }
 
 /* Allows to store the value of the map's width */
 void	ft_map_width(t_fdf *ms, char *str)
 {
-	int			index;
+	int	index;
 
 	index = 0;
 	while (str[index])
@@ -59,7 +56,7 @@ void	ft_map_width(t_fdf *ms, char *str)
 			index++;
 		else if (ft_iswhitespace(str[index]) == 0)
 		{
-			(ms->width)++;
+			ms->width++;
 			while (ft_iswhitespace(str[index]) == 0)
 				index++;
 		}
@@ -73,8 +70,8 @@ Gather map infos (width, height, color).
 void	ft_extract_infos(t_fdf *ms, char *file)
 {
 	int		fd;
-	char	*line;
 	int		flag;
+	char	*line;
 
 	flag = 0;
 	fd = open(file, O_RDONLY);
@@ -83,7 +80,8 @@ void	ft_extract_infos(t_fdf *ms, char *file)
 		line = get_next_line(fd);
 		if (line == NULL && flag == 0)
 			ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
-				KYEL"	-> File is empty / Map doesn't exist <-\n"KNRM);
+				KYEL"	-> File is empty / Map doesn't exist / "KNRM
+				KYEL"Trying to open a directory ? <-\n"KNRM);
 		if (line == NULL)
 			break ;
 		if (flag == 0)

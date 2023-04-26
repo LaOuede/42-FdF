@@ -6,13 +6,13 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:11:47 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 14:38:21 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:08:57 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/* Get the starting points on the screen */
+/* Gets the starting coordinates to display on the screen */
 void	ft_get_starting_points(t_fdf *ms)
 {
 	ms->coord->proj_sx += WIDTH / 2;
@@ -37,17 +37,19 @@ void	ft_colorscheme(t_fdf *ms)
 		ft_avernus(ms);
 }
 
+/* Initialize and set the menu on the left side of the window */
 void	ft_add_menu(t_fdf *ms)
 {
 	ms->menu->menu_txt = mlx_load_png(MENU);
 	ms->menu->menu_img = mlx_texture_to_image(ms->mlx, ms->menu->menu_txt);
 	mlx_delete_texture(ms->menu->menu_txt);
 	mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0);
-	if (!ms->menu->menu_img
+	if (!ms->menu->menu_img || !ms->menu->menu_txt
 		|| (mlx_image_to_window(ms->mlx, ms->menu->menu_img, 0, 0) == 0))
 		ft_clean_up(ms, KRED"Menu initialization failed\n"KNRM);
 }
 
+/* Calculates the scaling of the map */
 void	ft_map_scale(t_fdf *ms)
 {
 	int	x;

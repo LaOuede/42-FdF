@@ -6,7 +6,7 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:03:39 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 15:14:38 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:21:51 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ void	ft_zoom_hook(t_fdf *ms, keys_t key)
 	ft_draw(ms);
 }
 
+/*
+Handles hooks :
+	- Zoom;
+	- Rotation;
+	- Color;
+	- Reset;
+*/
 void	ft_keys_2(mlx_key_data_t keydata, void *param)
 {
 	t_fdf	*ms;

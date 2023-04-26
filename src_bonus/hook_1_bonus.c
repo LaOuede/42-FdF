@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_1_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 12:46:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 17:39:06 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/26 10:22:34 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ void	ft_projection_hook(t_fdf *ms, keys_t key)
 	ft_draw(ms);
 }
 
+/*
+Handles hooks :
+	- Program closure;
+	- Projection;
+	- Translation;
+	- Altitude;
+*/
 void	ft_keys_1(mlx_key_data_t keydata, void *param)
 {
 	t_fdf	*ms;
@@ -56,10 +63,7 @@ void	ft_keys_1(mlx_key_data_t keydata, void *param)
 	ms = (t_fdf *)param;
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_ESCAPE)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_Q))
-	{
-		ft_clean_up(ms, 0);
-		exit(EXIT_SUCCESS);
-	}
+		ft_clean_up(ms, NULL);
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_I)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_T)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_Y)
@@ -75,12 +79,4 @@ void	ft_keys_1(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(ms->mlx, MLX_KEY_UP)
 		|| mlx_is_key_down(ms->mlx, MLX_KEY_DOWN))
 		ft_z_hook(ms, keydata.key);
-}
-
-void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
-{
-	(void) param;
-
-	ft_keys_1(keydata, param);
-	ft_keys_2(keydata, param);
 }

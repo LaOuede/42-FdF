@@ -6,12 +6,14 @@
 /*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:01:56 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/25 13:37:42 by gle-roux         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:09:40 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+/* Combines four individual channel bytes into a single integer using
+bit-shifting*/
 int	ft_get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);

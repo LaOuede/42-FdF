@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 08:15:28 by gwenolalero       #+#    #+#             */
-/*   Updated: 2023/04/25 17:46:20 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/26 11:26:48 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf_bonus.h"
+
+/*
+Handles hooks :
+	- Program closure;
+	- Projection;
+	- Color;
+	- Translation;
+	- Altitude;
+	- Zoom;
+	- Rotation;
+	- Reset;
+*/
+void	ft_fdf_keys(mlx_key_data_t keydata, void *param)
+{
+	(void) param;
+	ft_keys_1(keydata, param);
+	ft_keys_2(keydata, param);
+}
 
 /* Initialize and set the graphic library and the window */
 t_flag	ft_init_mlx(t_fdf *ms, char *file)
@@ -22,6 +40,33 @@ t_flag	ft_init_mlx(t_fdf *ms, char *file)
 		|| (mlx_image_to_window(ms->mlx, ms->image, 300, 0) == 0))
 		ft_clean_up(ms, KRED"MLX initialization failed\n"KNRM);
 	return (T);
+}
+
+/*
+Checks :
+	- if the <map.fdf> is valid / exist,
+	- if the extension is .fdf,
+	- if .fdf is a file and not a directory,
+	- if the file can be opened.
+*/
+void	ft_parse_file(t_fdf *ms, char *file)
+{
+	int		fd;
+	char	*check_file;
+
+	check_file = NULL;
+	check_file = ft_strrchr(file, '.');
+	if (!check_file)
+		ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File is invalid <-\n"KNRM);
+	if (ft_strcmp(check_file, ".fdf") != 0)
+		ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File has an invalid extension <-\n"KNRM);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_clean_up(ms, "Usage : ./fdf <map.fdf>\n"
+			KYEL"	-> File can't be opened OR File doesn't exist <-\n"KNRM);
+	close(fd);
 }
 
 int	main(int argc, char **argv)

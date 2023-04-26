@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+        */
+/*   By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:53:41 by gle-roux          #+#    #+#             */
-/*   Updated: 2023/04/18 17:43:11 by gwenolalero      ###   ########.fr       */
+/*   Updated: 2023/04/26 10:24:40 by gle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/* Initialize the structure containing the informations from the <.fdf> file. */
 void	ft_init_line_x(t_fdf *ms)
 {
 	ms->coord->sx = ms->x;
@@ -46,6 +45,7 @@ t_dda	*ft_init_dda(void)
 		algo->delta_y = 0;
 		algo->ptp = 0;
 		algo->delta_max = 0;
+		algo->pixel = 0;
 	}
 	return (algo);
 }
@@ -66,7 +66,10 @@ t_camera	*ft_init_camera(void)
 	return (cam);
 }
 
-/* Initialize the meta structure (if it doesn't exist) and returns it. */
+/*
+Initializes the meta structure (if it doesn't exist) and returns it.
+Triggers camera and algo initializations.
+*/
 t_fdf	*ft_init_ms(void)
 {
 	static t_fdf	*ms;
@@ -74,11 +77,11 @@ t_fdf	*ft_init_ms(void)
 	if (!ms)
 	{
 		ms = ft_calloc(sizeof(t_fdf), 1);
+		ms->x = 0;
+		ms->y = 0;
 		ms->height = 0;
 		ms->width = 0;
 		ms->matrix = 0;
-		ms->x = 0;
-		ms->y = 0;
 		ms->cam = ft_init_camera();
 		ms->algo = ft_init_dda();
 		ms->coord = ft_calloc(sizeof(t_line), 1);
