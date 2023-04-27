@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
+#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/26 16:14:52 by gwenolalero      ###   ########.fr        #
+#    Updated: 2023/04/27 08:03:59 by gle-roux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,8 +91,8 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_LIST))
 # Dir. and files names - BONUS
 SRCS_DIR_B	=	./src_bonus/
 SRCS_LIST_B	=	clean_bonus.c \
-				color_scheme_bonus.c \
 				colors_bonus.c \
+				color_scheme_bonus.c \
 				draw_bonus.c \
 				hook_1_bonus.c \
 				hook_2_bonus.c \
