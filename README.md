@@ -59,5 +59,5 @@ https://github.com/LaOuede/FdF/assets/114024436/cca0d63e-09ea-4225-875f-b27707da
 
 <div align="center">
 
-To look at [my next 42 project](https://github.com/LaOuede/FdF) !
+To look at [my next 42 project](https://github.com/LaOuede/Minishell) !
 </div>
