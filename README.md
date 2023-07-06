@@ -38,17 +38,17 @@ I've acquired a lot of basic knowledge on C programming :
 
 <h3 align="left">Usage 🛠</h3>
 
-- Compilation :
+1- Compilation :
 ```bash
 make
 ```
 
-- Execution :
+2- Execution :
 ```bash
 ./fdf <filename.fdf>
 ```
 
-- Behaviour :
+3- Behaviour :
 <img width="1915" alt="Screen Shot 2023-06-27 at 8 03 37 AM" src="https://github.com/LaOuede/FdF/assets/114024436/46011748-6a71-4736-ba2b-cae0767e6bf6">
 <img width="1917" alt="Screen Shot 2023-06-27 at 8 04 38 AM" src="https://github.com/LaOuede/FdF/assets/114024436/52779c01-948f-42ae-bc73-846a66b0a63e">
 <img width="1917" alt="Screen Shot 2023-06-27 at 8 05 34 AM" src="https://github.com/LaOuede/FdF/assets/114024436/8315ef4f-a78e-4f3a-b9c6-332906f7ea06">
