@@ -6,7 +6,7 @@
 #    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/10/29 11:21:58 by gwenolalero      ###   ########.fr        #
+#    Updated: 2023/10/29 11:38:05 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,7 +176,7 @@ $(MLX42):
 		brew install glfw &> /dev/null; \
 	fi
 	@echo "$W------------------------- $Zlibmlx42.a $W--------------------------\n"
-	@if [ ! -f "lib/MLX42/build/libmlx42.a" ]; then \
+	@if [ ! -f "./lib/MLX42/build/libmlx42.a" ]; then \
 		cmake MLX42 -B $(MLX42_DIR) &> /dev/null && make -C $(MLX42_DIR) -j4; \
 	fi
 	@echo "\n$W----------------------- $Zmlx42 is $Gdone ✅ $W----------------------\n"
