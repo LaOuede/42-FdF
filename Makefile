@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gle-roux <gle-roux@student.42.fr>          +#+  +:+       +#+         #
+#    By: gwenolaleroux <gwenolaleroux@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/26 12:57:00 by gle-roux          #+#    #+#              #
-#    Updated: 2023/04/27 08:03:59 by gle-roux         ###   ########.fr        #
+#    Updated: 2023/10/29 11:08:19 by gwenolalero      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,12 +60,12 @@ export HELP
 #------------------------------------------------------------------------------#
 
 # Compiler and flags
-CC		=	gcc
-CFLAGS	= 	-g -Wall -Wextra -Werror 
-#CFLAGS	= 	-fsanitize=address
+CC			=	gcc
+CFLAGS		= 	-g -Wall -Wextra -Werror 
+#CFLAGS		= 	-fsanitize=address
 
 # Remove
-RM		=	rm -rf
+RM			=	rm -rf
 
 # Librairies names
 NAME		=	fdf
@@ -127,6 +127,7 @@ MLX42_DIR	=	./lib/MLX42/build/
 MLX42		=	$(MLX42_DIR)libmlx42.a
 OPEN_GL		=	-framework Cocoa -framework OpenGL -framework IOKit
 GLFW		=	-lglfw -L "/Users/$$USER/.brew/opt/glfw/lib/"
+#GLFW		=	-lglfw -L "/opt/homebrew/Cellar/glfw/3.3.8/lib"
 
 # Evaluator variable
 USER		=	$(shell whoami)
