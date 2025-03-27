@@ -229,10 +229,6 @@ bonus: dir $(NAME_B)
 help:
 	@echo "$$HELP"
 
-# Open the subject
-pdf:
-	@open https://cdn.intra.42.fr/pdf/pdf/80730/fr.subject.pdf
-
 # Open a color picker
 color:
 	@open https://www.w3schools.com/colors/colors_picker.asp
@@ -260,4 +256,4 @@ norm :
 	@echo "\n$W>>>>>>>>>>>>>>>>>>>>>>>> $YNORMINETTE ✅ $W<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 # Avoids file-target name conflicts
-.PHONY: all dir clean fclean re bonus help pdf color iso rot bres dda norm
+.PHONY: all dir clean fclean re bonus help color iso rot bres dda norm
